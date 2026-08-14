@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing &amp; Packages — SmartApply</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --champagne:#F8E7C9;
+    --champagne-deep:#F0D9A8;
+    --emerald:#013E3B;
+    --emerald-light:#0B5A54;
+    --soft-white:#FDFBF6;
+    --gold:#C9A24B;
+    --ink:#0B211F;
+    --grey:#8A8F8D;
+    --grey-bg:#EDEDEA;
+    --line: rgba(1,62,59,0.16);
+    --max-w: 1180px;
+    --radius: 22px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--ink);
+    background:var(--soft-white);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img,svg{ display:block; max-width:100%; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
+  button{ font-family:inherit; cursor:pointer; }
+
+  .wrap{ max-width:var(--max-w); margin:0 auto; padding:0 24px; }
+
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk', sans-serif;
+    letter-spacing:-0.02em;
+    line-height:1.05;
+    font-weight:700;
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--emerald);
+    opacity:0.7;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .eyebrow::before{ content:""; width:6px; height:6px; background:var(--gold); border-radius:50%; display:inline-block; }
+  .eyebrow.light{ color:var(--champagne); opacity:0.85; }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:9px;
+    padding:15px 26px; border-radius:100px; font-weight:600; font-size:0.94rem; border:none;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    white-space:nowrap;
+  }
+  .btn:active{ transform:scale(0.97); }
+  .btn-primary{ background:var(--emerald); color:var(--champagne); box-shadow:0 10px 26px -10px rgba(1,62,59,0.5); }
+  .btn-primary:hover{ background:var(--emerald-light); transform:translateY(-2px); }
+  .btn-outline{ background:transparent; color:var(--emerald); border:1.5px solid var(--emerald); }
+  .btn-outline:hover{ background:rgba(1,62,59,0.06); transform:translateY(-2px); }
+  .btn-light{ background:var(--champagne); color:var(--emerald); }
+  .btn-light:hover{ background:var(--soft-white); transform:translateY(-2px); }
+  .btn-full{ width:100%; }
+  .btn svg{ width:16px; height:16px; }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(248,231,201,0.92);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{ display:flex; align-items:center; justify-content:space-between; height:76px; }
+  .logo{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.3rem; color:var(--emerald); display:flex; align-items:center; gap:8px; }
+  .logo img { height:42px; width:auto; max-width:240px; display:block; }
+  .logo .dot{ width:9px; height:9px; background:var(--gold); border-radius:50%; }
+  .nav-links{ display:flex; align-items:center; gap:36px; }
+  .nav-links a{ font-size:0.95rem; font-weight:500; color:var(--emerald); position:relative; padding:4px 0; }
+  .nav-links a.active::after{ width:100%; }
+  .nav-links a::after{ content:""; position:absolute; left:0; bottom:-2px; width:0%; height:2px; background:var(--gold); transition:width .25s ease; }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-cta{ display:flex; align-items:center; gap:18px; }
+  .burger{ display:none; background:none; border:none; }
+  .burger svg{ width:26px; height:26px; color:var(--emerald); }
+  @media (max-width:900px){
+    .nav-links{
+      display:none;
+      position:absolute;
+      top:76px;
+      left:16px;
+      right:16px;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:18px;
+      background:rgba(248,231,201,0.98);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px 20px;
+      box-shadow:0 18px 38px -18px rgba(1,62,59,0.35);
+      z-index:20;
+    }
+    .nav-links.open{ display:flex; }
+    .burger{ display:block; }
+    .nav-cta .btn-outline{ display:none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{ background:var(--champagne); padding:90px 0 60px; text-align:center; }
+  .hero .wrap{ max-width:720px; }
+  .hero h1{ font-size:clamp(2.3rem, 5vw, 3.5rem); color:var(--emerald); margin-top:18px; }
+  .hero p.lede{ margin:20px auto 0; font-size:1.08rem; max-width:540px; color:rgba(11,33,31,0.75); line-height:1.6; }
+  .hero-note{
+    margin-top:22px;
+    display:inline-block;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.8rem;
+    color:var(--emerald);
+    background:var(--soft-white);
+    padding:10px 18px;
+    border-radius:100px;
+    border:1px solid var(--line);
+  }
+
+  section{ padding:96px 0; }
+  .section-soft{ background:var(--soft-white); }
+  .section-champagne{ background:var(--champagne); }
+  .section-emerald{ background:var(--emerald); color:var(--champagne); }
+
+  .section-head{ max-width:640px; margin:0 auto 50px; text-align:center; }
+  .section-head h2{ font-size:clamp(1.9rem, 3.4vw, 2.5rem); margin-top:14px; color:var(--emerald); }
+  .section-emerald .section-head h2{ color:var(--champagne); }
+  .section-head p{ margin-top:16px; font-size:1.02rem; color:rgba(11,33,31,0.7); line-height:1.6; }
+  .section-emerald .section-head p{ color:rgba(248,231,201,0.78); }
+  .section-emerald .eyebrow{ color:var(--champagne); opacity:0.85; }
+
+  /* ---------- PACKAGE CARDS ---------- */
+  .price-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; align-items:stretch; }
+  .price-card{
+    background:var(--soft-white);
+    border:1px solid var(--line);
+    border-radius:26px;
+    padding:36px 30px;
+    display:flex; flex-direction:column;
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .price-card:hover{ transform:translateY(-6px); box-shadow:0 24px 44px -22px rgba(1,62,59,0.28); }
+  .price-card.featured{ background:var(--emerald); color:var(--champagne); border-color:var(--emerald); }
+  .price-tag{ font-family:'IBM Plex Mono',monospace; font-size:0.74rem; letter-spacing:0.12em; text-transform:uppercase; opacity:0.7; }
+  .price-amt{ font-family:'Space Grotesk',sans-serif; font-size:2.8rem; font-weight:700; margin-top:10px; color:var(--emerald); }
+  .price-card.featured .price-amt{ color:var(--champagne); }
+  .price-card .for-line{ margin-top:8px; font-size:0.92rem; font-weight:500; opacity:0.75; }
+  .price-divider{ margin:22px 0; border-top:1px solid var(--line); }
+  .price-card.featured .price-divider{ border-top-color:rgba(248,231,201,0.2); }
+  .price-features{ display:flex; flex-direction:column; gap:11px; flex-grow:1; }
+  .price-features li{ display:flex; gap:10px; align-items:flex-start; font-size:0.92rem; line-height:1.4; }
+  .price-features li svg{ width:16px; height:16px; flex-shrink:0; margin-top:2px; color:var(--gold); }
+  .price-card .btn{ margin-top:26px; }
+  @media (max-width:960px){ .price-row{ grid-template-columns:1fr; max-width:420px; margin:0 auto; } }
+
+  /* ---------- WHAT YOU'RE PAYING FOR ---------- */
+  .pay-grid{ display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:start; }
+  .pay-grid .covers h3, .pay-grid .not-covers h3{
+    font-family:'Space Grotesk',sans-serif; font-size:1.15rem; color:var(--emerald); margin-bottom:16px;
+  }
+  .cover-list{ display:flex; flex-direction:column; gap:12px; }
+  .cover-list li{ display:flex; gap:10px; align-items:flex-start; font-size:0.95rem; color:rgba(11,33,31,0.78); line-height:1.5; }
+  .cover-list li svg{ width:17px; height:17px; flex-shrink:0; margin-top:2px; }
+  .cover-list.yes li svg{ color:var(--emerald); }
+  .cover-list.no li svg{ color:var(--grey); }
+  @media (max-width:800px){ .pay-grid{ grid-template-columns:1fr; gap:34px; } }
+
+  /* ---------- INSTITUTION FEES BOX ---------- */
+  .fee-box{
+    background:var(--soft-white);
+    border:1px solid var(--line);
+    border-radius:26px;
+    padding:44px 40px;
+    max-width:760px;
+    margin:0 auto;
+  }
+  .fee-box-head{ text-align:center; margin-bottom:34px; }
+  .fee-box-head h3{ font-family:'Space Grotesk',sans-serif; font-size:1.4rem; color:var(--emerald); }
+  .fee-status-row{ display:flex; justify-content:center; gap:40px; margin-bottom:38px; flex-wrap:wrap; }
+  .fee-status{ text-align:center; }
+  .fee-status .label{ font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; color:rgba(11,33,31,0.5); }
+  .fee-status .value{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.15rem; margin-top:6px; }
+  .fee-status.free .value{ color:var(--emerald); }
+  .fee-status.paid .value{ color:var(--gold); }
+  .fee-status p.note{ font-size:0.86rem; color:rgba(11,33,31,0.6); margin-top:16px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center; }
+
+  .sum-row{
+    display:flex; align-items:center; justify-content:center; gap:20px;
+    flex-wrap:wrap;
+    padding-top:30px; border-top:1px dashed var(--line);
+  }
+  .sum-item{ text-align:center; min-width:130px; }
+  .sum-item .lbl{ font-family:'IBM Plex Mono',monospace; font-size:0.72rem; text-transform:uppercase; color:rgba(11,33,31,0.5); }
+  .sum-item .amt{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.5rem; color:var(--emerald); margin-top:6px; }
+  .sum-op{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.6rem; color:var(--gold); }
+  .sum-item.total .amt{ color:var(--emerald-light); }
+  .sum-item.total{ background:var(--champagne); border-radius:16px; padding:10px 18px; }
+
+  /* ---------- COMPARISON TABLE ---------- */
+  .compare-wrap{ overflow-x:auto; }
+  table.compare{
+    width:100%; border-collapse:collapse;
+    min-width:560px;
+    background:var(--soft-white);
+    border-radius:20px;
+    overflow:hidden;
+  }
+  table.compare th, table.compare td{
+    padding:16px 18px;
+    text-align:center;
+    border-bottom:1px solid var(--line);
+    font-size:0.92rem;
+  }
+  table.compare th{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    color:var(--emerald);
+    background:var(--champagne);
+  }
+  table.compare td:first-child, table.compare th:first-child{
+    text-align:left;
+    font-weight:500;
+    color:rgba(11,33,31,0.8);
+  }
+  table.compare th:first-child{ background:var(--champagne); }
+  table.compare tbody tr:last-child td{ border-bottom:none; }
+  table.compare .tick{ color:var(--emerald); font-weight:700; }
+  table.compare .num{ font-family:'IBM Plex Mono',monospace; font-weight:600; color:var(--emerald); }
+  table.compare th.highlight{ background:var(--emerald); color:var(--champagne); }
+
+  .not-included-note{
+    margin-top:22px;
+    font-size:0.88rem;
+    color:rgba(11,33,31,0.6);
+    max-width:760px;
+  }
+
+  /* ---------- PAYMENT STEPS ---------- */
+  .pay-steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+  .pay-step{ text-align:center; padding:8px; }
+  .pay-step .num{
+    width:48px; height:48px; border-radius:50%;
+    background:var(--emerald); color:var(--champagne);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk',sans-serif; font-weight:700;
+    margin:0 auto 16px;
+  }
+  .pay-step h3{ font-family:'Space Grotesk',sans-serif; font-size:1.05rem; color:var(--emerald); }
+  .pay-step p{ margin-top:8px; font-size:0.88rem; color:rgba(11,33,31,0.65); line-height:1.5; }
+  @media (max-width:860px){ .pay-steps{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:520px){ .pay-steps{ grid-template-columns:1fr; } }
+
+  /* ---------- REFUND ---------- */
+  .refund-box{
+    max-width:720px; margin:0 auto;
+    background:var(--soft-white);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:28px 30px;
+    display:flex; gap:16px; align-items:flex-start;
+  }
+  .refund-box svg{ width:22px; height:22px; color:var(--emerald); flex-shrink:0; margin-top:2px; }
+  .refund-box p{ font-size:0.96rem; color:rgba(11,33,31,0.78); line-height:1.6; }
+  .refund-box a{ color:var(--emerald); font-weight:600; border-bottom:1.5px solid var(--emerald); }
+
+  /* ---------- FAQ ---------- */
+  .faq-list{ max-width:760px; margin:0 auto; }
+  .faq-item{ border-bottom:1px solid var(--line); }
+  .faq-q{
+    width:100%; display:flex; align-items:center; justify-content:space-between;
+    padding:22px 0; background:none; border:none;
+    font-family:'Space Grotesk',sans-serif; font-size:1.02rem; font-weight:600;
+    color:var(--emerald); text-align:left;
+  }
+  .faq-q .plus{ font-size:1.4rem; font-weight:400; transition:transform .3s ease; flex-shrink:0; margin-left:20px; color:var(--gold); }
+  .faq-item.open .faq-q .plus{ transform:rotate(45deg); }
+  .faq-a{ max-height:0; overflow:hidden; transition:max-height .35s ease; }
+  .faq-a p{ padding-bottom:22px; color:rgba(11,33,31,0.72); line-height:1.6; max-width:640px; }
+  .faq-item.open .faq-a{ max-height:220px; }
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{ text-align:center; padding:110px 0; }
+  .final-cta h2{ font-size:clamp(2.1rem,4.6vw,3.2rem); color:var(--champagne); max-width:640px; margin:0 auto; }
+  .final-cta p{ margin:20px auto 0; max-width:480px; color:rgba(248,231,201,0.8); font-size:1.06rem; }
+  .final-cta .btn{ margin-top:34px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--ink); color:var(--champagne); padding:70px 0 30px; }
+  .footer-top{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; padding-bottom:50px; border-bottom:1px solid rgba(248,231,201,0.14); }
+  .footer-top .logo{ color:var(--champagne); }
+  .footer-top p{ margin-top:14px; color:rgba(248,231,201,0.6); font-size:0.92rem; max-width:260px; line-height:1.5; }
+  .footer-col h4{ font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; }
+  .footer-col ul{ display:flex; flex-direction:column; gap:12px; }
+  .footer-col a{ font-size:0.92rem; color:rgba(248,231,201,0.8); transition:color .2s; }
+  .footer-col a:hover{ color:var(--gold); }
+  .footer-bottom{ display:flex; justify-content:space-between; align-items:center; padding-top:26px; font-size:0.82rem; color:rgba(248,231,201,0.45); flex-wrap:wrap; gap:12px; }
+  @media (max-width:800px){ .footer-top{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:500px){ .footer-top{ grid-template-columns:1fr; } }
+
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+  :focus-visible{ outline:2.5px solid var(--gold); outline-offset:3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="index.html" class="logo" aria-label="SmartApply home"><img src="images/Logo.png" alt="SmartApply logo"></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="institutions.html">Universities &amp; Colleges</a>
+      <a href="howitworks.html">How It Works</a>
+      <a href="pricings.html" class="active">Pricing</a>
+    </div>
+    <div class="nav-cta">
+      <a href="https://wa.me/27000000000?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-outline whatsapp-cta">Chat on WhatsApp</a>
+      <button class="burger" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Simple, upfront pricing</span>
+    <h1>Get help without the headache.</h1>
+    <p class="lede">Choose the SmartApply package that fits the number of applications you need help with.</p>
+    <div class="hero-note">Your SmartApply fee is separate from any university or college application fees</div>
+  </div>
+</section>
+
+<section class="section-soft" id="packages">
+  <div class="wrap">
+    <div class="price-row">
+
+      <div class="price-card">
+        <div class="price-tag">Starter</div>
+        <div class="price-amt">R100</div>
+        <div class="for-line">For students starting their application journey.</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Assistance with up to 2 applications</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>WhatsApp guidance</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Application information</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Submission assistance</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Confirmation of submitted applications</li>
+        </ul>
+        <a href="https://wa.me/27000000000?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-outline whatsapp-cta btn-full">Choose Starter</a>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-tag">Standard</div>
+        <div class="price-amt">R200</div>
+        <div class="for-line">For students applying to multiple institutions.</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Assistance with up to 5 applications</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>WhatsApp guidance</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Application information</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Document guidance</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Submission assistance</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Application confirmation</li>
+        </ul>
+        <a href="https://wa.me/27000000000?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-light whatsapp-cta btn-full">Choose Standard</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-tag">Complete</div>
+        <div class="price-amt">R350</div>
+        <div class="for-line">For students who want more comprehensive assistance.</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Assistance with up to 10 applications</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>WhatsApp guidance</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Document guidance</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Application assistance</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Submission assistance</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Application confirmation</li>
+        </ul>
+        <a href="https://wa.me/27000000000?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-outline whatsapp-cta btn-full">Choose Complete</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section-champagne">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Read this before you choose</span>
+      <h2>What does the SmartApply fee cover?</h2>
+      <p>Your SmartApply fee pays for our assistance service — helping you get your application right, not for the application itself.</p>
+    </div>
+    <div class="pay-grid">
+      <div class="covers">
+        <h3>It can cover</h3>
+        <ul class="cover-list yes">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Helping you understand the application process</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Checking the information you provide for completeness</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Assisting with supported application forms</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Guiding you through required documents</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Assisting with application submission</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Communicating relevant submission information to you</li>
+        </ul>
+      </div>
+      <div class="not-covers">
+        <h3>It does not cover</h3>
+        <ul class="cover-list no">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Fees charged by universities or colleges</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Admission or registration decisions</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Guaranteed acceptance into any programme</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-soft">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The other part of the equation</span>
+      <h2>University or college fees are separate</h2>
+    </div>
+    <div class="fee-box">
+      <div class="fee-status-row">
+        <div class="fee-status free">
+          <div class="label">Some institutions</div>
+          <div class="value">Free applications</div>
+        </div>
+        <div class="fee-status paid">
+          <div class="label">Others may charge</div>
+          <div class="value">Application fees</div>
+        </div>
+      </div>
+      <p class="note">If an institution charges an application fee, you pay that fee separately — directly to the institution, not to SmartApply.</p>
+      <div class="sum-row">
+        <div class="sum-item"><div class="lbl">SmartApply service</div><div class="amt">R100</div></div>
+        <div class="sum-op">+</div>
+        <div class="sum-item"><div class="lbl">Institution app. fee</div><div class="amt">R100</div></div>
+        <div class="sum-op">=</div>
+        <div class="sum-item total"><div class="lbl">Total paid by student</div><div class="amt">R200</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-champagne">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Package breakdown</span>
+      <h2>What's included vs not included</h2>
+    </div>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Starter</th>
+            <th class="highlight">Standard</th>
+            <th>Complete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>WhatsApp support</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+          <tr><td>Application guidance</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+          <tr><td>Document guidance</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+          <tr><td>Application assistance</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+          <tr><td>Submission assistance</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+          <tr><td>Supported applications</td><td class="num">2</td><td class="num">5</td><td class="num">10</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="not-included-note"><strong>Not included:</strong> institution application fees, admission fees, registration fees, accommodation fees or other charges imposed by the institution.</p>
+  </div>
+</section>
+
+<section class="section-soft">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Getting started</span>
+      <h2>How payment works</h2>
+    </div>
+    <div class="pay-steps">
+      <div class="pay-step">
+        <div class="num">1</div>
+        <h3>Choose your package</h3>
+        <p>Select the package you need.</p>
+      </div>
+      <div class="pay-step">
+        <div class="num">2</div>
+        <h3>Chat with us</h3>
+        <p>Click WhatsApp and we'll confirm the package and next steps.</p>
+      </div>
+      <div class="pay-step">
+        <div class="num">3</div>
+        <h3>Make payment</h3>
+        <p>You'll receive the appropriate payment instructions.</p>
+      </div>
+      <div class="pay-step">
+        <div class="num">4</div>
+        <h3>Start your applications</h3>
+        <p>Once payment and required information are confirmed, we begin the assistance process.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-champagne">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:36px;">
+      <span class="eyebrow">Before you purchase</span>
+      <h2>Refund policy</h2>
+    </div>
+    <div class="refund-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p><strong>Refunds:</strong> Refund eligibility depends on the circumstances and the stage of the service. Please review our <a href="terms-conditions.html">Terms &amp; Conditions</a> before purchasing.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section-soft">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Common questions</span>
+      <h2>Pricing FAQs</h2>
+    </div>
+    <div class="faq-list" id="faqList">
+      <div class="faq-item open">
+        <button class="faq-q">Does my package include university application fees?<span class="plus">+</span></button>
+        <div class="faq-a"><p>No. Institution fees are separate.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I apply to both universities and colleges?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes, provided the institutions are supported by SmartApply and fall within your selected package.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I upgrade my package?<span class="plus">+</span></button>
+        <div class="faq-a"><p>If your application needs change, contact SmartApply on WhatsApp to discuss an upgrade.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I pay before you start?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Your payment process will be explained when you contact SmartApply on WhatsApp.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Does SmartApply guarantee admission?<span class="plus">+</span></button>
+        <div class="faq-a"><p>No. Admission decisions are made entirely by the relevant university or college.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What happens if an application is unsuccessful?<span class="plus">+</span></button>
+        <div class="faq-a"><p>An unsuccessful application does not mean the SmartApply service was unsuccessful. Our service is to assist with the application process; admission is determined by the institution.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-emerald final-cta">
+  <div class="wrap">
+    <h2>Not sure which package you need?</h2>
+    <p>Don't worry. Tell us where you want to apply and we'll help you understand which option is right for you.</p>
+    <a href="https://wa.me/27000000000?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-light whatsapp-cta">Chat with SmartApply
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.37 5.07L2 22l5.07-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a7.9 7.9 0 01-4.03-1.1l-.29-.17-2.97.78.79-2.89-.19-.3A7.93 7.93 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="logo" aria-label="SmartApply home"><img src="images/Logo.png" alt="SmartApply logo" style="height:42px; width:auto; display:block;"></a>
+        <p>Your application. Your future. Made simple.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="institutions.html">Universities &amp; Colleges</a></li>
+          <li><a href="howitworks.html">How It Works</a></li>
+          <li><a href="pricings.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="popia-notice.html">POPIA Notice</a></li>
+          <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="https://wa.me/27000000000?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="whatsapp-cta">WhatsApp</a></li>
+          <li><a href="mailto:hello@smartapply.co.za">Email</a></li>
+          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Social Media</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SmartApply. All rights reserved.</span>
+      <span>Made for South African students.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navToggle = document.querySelector('.burger');
+  const navLinks = document.querySelector('.nav-links');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 900) {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  const WHATSAPP_LINK = "https://wa.me/27000000000?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application";
+  document.querySelectorAll('.whatsapp-cta').forEach(el => {
+    el.setAttribute('href', WHATSAPP_LINK);
+    el.setAttribute('target', '_blank');
+    el.setAttribute('rel', 'noopener');
+  });
+
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  const revealEls = document.querySelectorAll('.price-card, .pay-step, .cover-list li');
+  revealEls.forEach(el => {
+    el.style.opacity = 0;
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease';
+  });
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = 'translateY(0)';
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

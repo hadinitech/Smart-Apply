@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms & Conditions | SmartApply</title>
+  <style>
+    :root {
+      --emerald:#0b211f; --mid:#1a4b44; --gold:#d7b36a; --cream:#f5efe6; --line: rgba(11,33,31,.12);
+    }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--cream); color:var(--emerald); font-family: Arial, sans-serif; line-height:1.6; }
+    header { background: rgba(11,33,31,.96); }
+    nav { max-width:1160px; margin:0 auto; padding:20px 28px; display:flex; justify-content:space-between; align-items:center; }
+    .logo { color:#fff; text-decoration:none; font-weight:700; font-size:1.2rem; }
+    .dot { display:inline-block; width:10px; height:10px; border-radius:50%; background:var(--gold); margin-right:8px; vertical-align:middle; }
+    .nav-links { display:flex; gap:24px; flex-wrap:wrap; }
+    .nav-links a { color:rgba(255,255,255,.82); text-decoration:none; }
+    .nav-links a:hover { color:#fff; }
+    main { max-width:900px; margin:0 auto; padding:60px 24px 80px; }
+    .card { background:#fff; border:1px solid var(--line); border-radius:18px; padding:32px; box-shadow:0 18px 35px rgba(11,33,31,.05); }
+    h1 { font-size:clamp(2rem,4vw,3rem); margin:0 0 20px; }
+    h2 { margin-top:28px; font-size:1.2rem; }
+    p, li { color:rgba(11,33,31,.75); }
+    ul { padding-left:18px; }
+    a { color:var(--mid); }
+    footer { background:var(--emerald); color:rgba(248,231,201,.75); }
+    .footer-inner { max-width:1160px; margin:0 auto; padding:30px 24px; text-align:center; }
+    .footer-inner .logo { justify-content:center; margin-bottom:10px; }
+    @media (max-width:700px){
+      .nav-links {
+        display:none;
+        position:absolute;
+        top:78px;
+        left:16px;
+        right:16px;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:12px;
+        background:rgba(11,33,31,0.98);
+        padding:18px 20px;
+        border:1px solid rgba(255,255,255,0.08);
+        border-radius:14px;
+      }
+      .nav-links.open { display:flex; }
+      .burger { display:block; }
+      nav { justify-content:space-between; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo" aria-label="SmartApply home"><img src="images/Logo.png" alt="SmartApply logo"></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="institutions.html">Universities & Colleges</a>
+        <a href="howitworks.html">How It Works</a>
+        <a href="pricings.html">Pricing</a>
+      </div>
+      <button class="burger" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="card">
+      <h1>Terms & Conditions</h1>
+      <p>These terms explain the general rules for using SmartApply's service and assistance platform.</p>
+      <p>SmartApply helps students understand and navigate the application process. We do not control the academic admissions decisions of universities or colleges.</p>
+
+      <h2>Service scope</h2>
+      <p>Our service includes guidance, application information, and support related to the selected package. Fees charged by universities or colleges are separate and are not included in SmartApply service fees.</p>
+
+      <h2>Student responsibility</h2>
+      <ul>
+        <li>Students are responsible for checking the information provided by institutions.</li>
+        <li>Students must ensure the accuracy and completeness of information they submit.</li>
+        <li>Students remain responsible for decisions made about programme choice and application submission.</li>
+      </ul>
+
+      <h2>Refunds and changes</h2>
+      <p>Refund eligibility depends on the circumstances and the stage of the service. We may review each request individually before making a determination.</p>
+
+      <p>For full terms applicable to your specific package or interaction, please contact SmartApply directly.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <a href="index.html" class="logo" aria-label="SmartApply home"><img src="images/Logo.png" alt="SmartApply logo"></a>
+      <p>© 2026 SmartApply. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    const navToggle = document.querySelector('.burger');
+    const navLinks = document.querySelector('.nav-links');
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 700) {
+          navLinks.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+  </script>
+</body>
+</html>

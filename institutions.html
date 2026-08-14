@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Universities &amp; Colleges — SmartApply</title>
+<link rel="icon" href="images/Favicon.png" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --champagne:#F8E7C9;
+    --champagne-deep:#F0D9A8;
+    --emerald:#013E3B;
+    --emerald-light:#0B5A54;
+    --soft-white:#FDFBF6;
+    --gold:#C9A24B;
+    --ink:#0B211F;
+    --grey:#8A8F8D;
+    --grey-bg:#EDEDEA;
+    --line: rgba(1,62,59,0.16);
+    --max-w: 1180px;
+    --radius: 20px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--ink);
+    background:var(--soft-white);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img,svg{ display:block; max-width:100%; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
+  button{ font-family:inherit; cursor:pointer; }
+  select, input{ font-family:inherit; }
+
+  .wrap{ max-width:var(--max-w); margin:0 auto; padding:0 24px; }
+
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk', sans-serif;
+    letter-spacing:-0.02em;
+    line-height:1.05;
+    font-weight:700;
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--champagne);
+    opacity:0.8;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:6px; height:6px;
+    background:var(--gold);
+    border-radius:50%;
+    display:inline-block;
+  }
+  .eyebrow.dark{ color:var(--emerald); opacity:0.7; }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    padding:14px 24px;
+    border-radius:100px;
+    font-weight:600;
+    font-size:0.92rem;
+    border:none;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    white-space:nowrap;
+  }
+  .btn:active{ transform:scale(0.97); }
+  .btn-primary{ background:var(--emerald); color:var(--champagne); box-shadow:0 10px 26px -10px rgba(1,62,59,0.5); }
+  .btn-primary:hover{ background:var(--emerald-light); transform:translateY(-2px); }
+  .btn-outline{ background:transparent; color:var(--emerald); border:1.5px solid var(--emerald); }
+  .btn-outline:hover{ background:rgba(1,62,59,0.06); transform:translateY(-2px); }
+  .btn-light{ background:var(--champagne); color:var(--emerald); }
+  .btn-light:hover{ background:var(--soft-white); transform:translateY(-2px); }
+  .btn-sm{ padding:10px 18px; font-size:0.84rem; }
+  .btn-full{ width:100%; }
+  .btn svg{ width:16px; height:16px; }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(248,231,201,0.92);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{ display:flex; align-items:center; justify-content:space-between; height:76px; }
+  .logo{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.3rem; color:var(--emerald); display:flex; align-items:center; gap:8px; }
+  .logo img { height:42px; width:auto; max-width:240px; display:block; }
+  .logo .dot{ width:9px; height:9px; background:var(--gold); border-radius:50%; }
+  .nav-links{ display:flex; align-items:center; gap:36px; }
+  .nav-links a{ font-size:0.95rem; font-weight:500; color:var(--emerald); position:relative; padding:4px 0; }
+  .nav-links a.active{ color:var(--emerald); }
+  .nav-links a.active::after{ width:100%; }
+  .nav-links a::after{ content:""; position:absolute; left:0; bottom:-2px; width:0%; height:2px; background:var(--gold); transition:width .25s ease; }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-cta{ display:flex; align-items:center; gap:18px; }
+  .burger{ display:none; background:none; border:none; }
+  .burger svg{ width:26px; height:26px; color:var(--emerald); }
+  @media (max-width:900px){
+    .nav-links{
+      display:none;
+      position:absolute;
+      top:76px;
+      left:16px;
+      right:16px;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:18px;
+      background:rgba(248,231,201,0.98);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px 20px;
+      box-shadow:0 18px 38px -18px rgba(1,62,59,0.35);
+      z-index:20;
+    }
+    .nav-links.open{ display:flex; }
+    .burger{ display:block; }
+    .nav-cta .btn-outline{ display:none; }
+  }
+
+  /* ---------- PAGE HEADER ---------- */
+  .page-header{
+    background:var(--emerald);
+    color:var(--champagne);
+    padding:72px 0 64px;
+  }
+  .page-header h1{
+    font-size:clamp(2.2rem, 4.6vw, 3.4rem);
+    color:var(--champagne);
+    margin-top:16px;
+    max-width:640px;
+  }
+  .page-header p{
+    margin-top:18px;
+    font-size:1.06rem;
+    max-width:520px;
+    color:rgba(248,231,201,0.8);
+    line-height:1.6;
+  }
+  .page-header .btn{ margin-top:30px; }
+
+  /* ---------- SEARCH ---------- */
+  .search-section{ background:var(--soft-white); padding:44px 0 0; }
+  .search-label{ font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:1.15rem; color:var(--emerald); margin-bottom:14px; }
+  .search-bar{
+    display:flex; align-items:center; gap:12px;
+    background:var(--soft-white);
+    border:1.5px solid var(--line);
+    border-radius:100px;
+    padding:8px 8px 8px 22px;
+    box-shadow:0 12px 30px -18px rgba(1,62,59,0.25);
+  }
+  .search-bar svg{ width:20px; height:20px; color:var(--emerald); opacity:0.6; flex-shrink:0; }
+  .search-bar input{
+    flex:1; border:none; outline:none; background:none;
+    font-size:1rem; color:var(--ink); padding:12px 0;
+  }
+  .search-bar input::placeholder{ color:rgba(11,33,31,0.4); }
+  .search-bar .btn{ flex-shrink:0; }
+
+  .filter-pills{
+    display:flex; gap:10px; margin-top:22px; flex-wrap:wrap;
+  }
+  .pill{
+    padding:10px 20px;
+    border-radius:100px;
+    border:1.5px solid var(--line);
+    font-size:0.88rem; font-weight:600;
+    color:var(--emerald);
+    background:var(--soft-white);
+    transition:background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .pill.active, .pill:hover{ background:var(--emerald); color:var(--champagne); border-color:var(--emerald); }
+
+  .filter-row{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:14px;
+    margin-top:22px;
+  }
+  .filter-select{
+    position:relative;
+  }
+  .filter-select select{
+    width:100%;
+    appearance:none;
+    background:var(--soft-white);
+    border:1.5px solid var(--line);
+    border-radius:12px;
+    padding:12px 36px 12px 14px;
+    font-size:0.86rem;
+    color:var(--ink);
+    font-weight:500;
+  }
+  .filter-select::after{
+    content:"";
+    position:absolute; right:14px; top:50%; transform:translateY(-40%);
+    width:8px; height:8px;
+    border-right:1.5px solid var(--emerald);
+    border-bottom:1.5px solid var(--emerald);
+    transform:translateY(-60%) rotate(45deg);
+    pointer-events:none;
+  }
+  @media (max-width:900px){ .filter-row{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:560px){ .filter-row{ grid-template-columns:1fr; } .search-bar{ flex-wrap:wrap; border-radius:22px; } .search-bar .btn{ width:100%; margin-top:8px; } }
+
+  .results-meta{
+    margin-top:26px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.8rem;
+    color:rgba(11,33,31,0.55);
+  }
+
+  /* ---------- STATUS BADGE ---------- */
+  .status{
+    display:inline-flex; align-items:center; gap:6px;
+    padding:5px 12px;
+    border-radius:100px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.68rem; letter-spacing:0.06em; text-transform:uppercase; font-weight:600;
+  }
+  .status::before{ content:""; width:6px; height:6px; border-radius:50%; }
+  .status.open{ background:rgba(1,62,59,0.1); color:var(--emerald); }
+  .status.open::before{ background:var(--emerald); }
+  .status.closing-soon{ background:rgba(201,162,75,0.16); color:#8a6a1f; }
+  .status.closing-soon::before{ background:var(--gold); }
+  .status.closed{ background:var(--grey-bg); color:var(--grey); }
+  .status.closed::before{ background:var(--grey); }
+
+  /* ---------- FEATURED (horizontal scroll) ---------- */
+  .featured-section{ padding:70px 0 20px; background:var(--soft-white); }
+  .section-head{ max-width:640px; margin-bottom:32px; }
+  .section-head h2{ font-size:clamp(1.7rem,3vw,2.2rem); color:var(--emerald); margin-top:12px; }
+  .featured-scroll{
+    display:flex; gap:18px;
+    overflow-x:auto;
+    padding-bottom:14px;
+    scroll-snap-type:x proximity;
+    -ms-overflow-style:none; scrollbar-width:none;
+  }
+  .featured-scroll::-webkit-scrollbar{ display:none; }
+  .feat-card{
+    flex:0 0 250px;
+    scroll-snap-align:start;
+    background:var(--champagne);
+    border-radius:18px;
+    padding:22px 20px;
+  }
+  .feat-logo{
+    width:44px; height:44px; border-radius:12px;
+    background:var(--emerald); color:var(--champagne);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1rem;
+    margin-bottom:14px;
+  }
+  .feat-card h4{ font-family:'Space Grotesk',sans-serif; font-size:1.05rem; color:var(--emerald); line-height:1.25; }
+  .feat-card .meta{ font-size:0.78rem; color:rgba(11,33,31,0.6); margin-top:5px; }
+  .feat-card .status{ margin-top:14px; }
+  .feat-card .fee-line{ margin-top:12px; font-family:'IBM Plex Mono',monospace; font-size:0.78rem; color:var(--emerald); }
+
+  /* ---------- DIRECTORY GRID ---------- */
+  .directory-section{ padding:50px 0 90px; background:var(--soft-white); }
+  .inst-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+    margin-top:34px;
+  }
+  @media (max-width:960px){ .inst-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:620px){ .inst-grid{ grid-template-columns:1fr; } }
+
+  .inst-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:24px 22px;
+    display:flex; flex-direction:column;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .inst-card:hover{ transform:translateY(-4px); box-shadow:0 20px 40px -22px rgba(1,62,59,0.28); }
+  .inst-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
+  .inst-id{ display:flex; gap:12px; align-items:flex-start; }
+  .inst-logo{
+    width:42px; height:42px; border-radius:11px; flex-shrink:0;
+    background:var(--champagne); color:var(--emerald);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:0.95rem;
+  }
+  .inst-name{ font-family:'Space Grotesk',sans-serif; font-size:1.08rem; color:var(--emerald); line-height:1.25; }
+  .inst-meta{ font-size:0.8rem; color:rgba(11,33,31,0.55); margin-top:3px; }
+
+  .inst-divider{ margin:18px 0; border-top:1px solid var(--line); }
+  .inst-facts{ display:flex; gap:24px; }
+  .inst-facts .fact .lbl{ font-family:'IBM Plex Mono',monospace; font-size:0.66rem; text-transform:uppercase; opacity:0.5; }
+  .inst-facts .fact .val{ font-family:'IBM Plex Mono',monospace; font-size:0.92rem; font-weight:600; color:var(--emerald); margin-top:3px; }
+
+  .inst-actions{ display:flex; gap:10px; margin-top:22px; }
+  .inst-actions .btn{ flex:1; }
+
+  .no-results{
+    text-align:center;
+    padding:60px 20px;
+    color:rgba(11,33,31,0.5);
+    font-size:0.98rem;
+    display:none;
+  }
+  .no-results.show{ display:block; }
+
+  /* ---------- ASSISTANCE BOX ---------- */
+  .assist-box{
+    background:var(--emerald);
+    border-radius:28px;
+    padding:52px 44px;
+    color:var(--champagne);
+    display:flex; justify-content:space-between; align-items:center; gap:30px;
+    flex-wrap:wrap;
+  }
+  .assist-box h3{ font-size:1.7rem; color:var(--champagne); }
+  .assist-box p{ margin-top:10px; color:rgba(248,231,201,0.8); max-width:420px; font-size:0.98rem; line-height:1.55; }
+
+  /* ---------- DISCLAIMER ---------- */
+  .disclaimer{
+    max-width:820px;
+    margin:56px auto 0;
+    padding:22px 24px;
+    background:var(--grey-bg);
+    border-radius:14px;
+    font-size:0.86rem;
+    color:rgba(11,33,31,0.68);
+    line-height:1.6;
+  }
+  .disclaimer strong{ color:var(--ink); }
+
+  /* ---------- MODAL ---------- */
+  .modal-overlay{
+    position:fixed; inset:0; z-index:200;
+    background:rgba(11,33,31,0.55);
+    display:none;
+    align-items:flex-start; justify-content:center;
+    padding:60px 20px;
+    overflow-y:auto;
+    backdrop-filter:blur(3px);
+  }
+  .modal-overlay.open{ display:flex; }
+  .modal{
+    background:var(--soft-white);
+    border-radius:26px;
+    max-width:600px; width:100%;
+    padding:0;
+    overflow:hidden;
+    animation:modalIn .3s ease;
+  }
+  @keyframes modalIn{ from{ opacity:0; transform:translateY(16px);} to{ opacity:1; transform:translateY(0);} }
+  .modal-head{
+    background:var(--emerald); color:var(--champagne);
+    padding:34px 32px 28px;
+    position:relative;
+  }
+  .modal-close{
+    position:absolute; top:20px; right:20px;
+    background:rgba(248,231,201,0.14); border:none;
+    width:34px; height:34px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--champagne);
+  }
+  .modal-close svg{ width:16px; height:16px; }
+  .modal-eyebrow{ font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; opacity:0.75; }
+  .modal-head h3{ font-size:1.7rem; margin-top:10px; color:var(--champagne); max-width:440px; }
+  .modal-body{ padding:30px 32px 34px; }
+  .modal-section{ margin-bottom:26px; }
+  .modal-section h4{
+    font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:12px;
+  }
+  .modal-facts{ display:flex; gap:28px; flex-wrap:wrap; }
+  .modal-facts .fact .lbl{ font-family:'IBM Plex Mono',monospace; font-size:0.68rem; text-transform:uppercase; opacity:0.5; }
+  .modal-facts .fact .val{ font-family:'IBM Plex Mono',monospace; font-size:0.98rem; font-weight:600; color:var(--emerald); margin-top:4px; }
+  .modal-list{ display:flex; flex-direction:column; gap:9px; }
+  .modal-list li{ display:flex; align-items:center; gap:10px; font-size:0.92rem; color:rgba(11,33,31,0.78); }
+  .modal-list li svg{ width:15px; height:15px; color:var(--emerald); flex-shrink:0; }
+  .modal-section p{ font-size:0.94rem; color:rgba(11,33,31,0.75); line-height:1.6; }
+  .modal-actions{ display:flex; gap:12px; margin-top:8px; flex-wrap:wrap; }
+  .modal-actions .btn{ flex:1; min-width:180px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--ink); color:var(--champagne); padding:70px 0 30px; }
+  .footer-top{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; padding-bottom:50px; border-bottom:1px solid rgba(248,231,201,0.14); }
+  .footer-top .logo{ color:var(--champagne); }
+  .footer-top p{ margin-top:14px; color:rgba(248,231,201,0.6); font-size:0.92rem; max-width:260px; line-height:1.5; }
+  .footer-col h4{ font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; }
+  .footer-col ul{ display:flex; flex-direction:column; gap:12px; }
+  .footer-col a{ font-size:0.92rem; color:rgba(248,231,201,0.8); transition:color .2s; }
+  .footer-col a:hover{ color:var(--gold); }
+  .footer-bottom{ display:flex; justify-content:space-between; align-items:center; padding-top:26px; font-size:0.82rem; color:rgba(248,231,201,0.45); flex-wrap:wrap; gap:12px; }
+  @media (max-width:800px){ .footer-top{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:500px){ .footer-top{ grid-template-columns:1fr; } }
+
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+  :focus-visible{ outline:2.5px solid var(--gold); outline-offset:3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="index.html" class="logo" aria-label="SmartApply home"><img src="images/Logo.png" alt="SmartApply logo"></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="institutions.html" class="active">Universities &amp; Colleges</a>
+      <a href="howitworks.html">How It Works</a>
+      <a href="pricings.html">Pricing</a>
+    </div>
+    <div class="nav-cta">
+      <a href="https://wa.me/27000000000?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-outline whatsapp-cta">Chat on WhatsApp</a>
+      <button class="burger" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<section class="page-header">
+  <div class="wrap">
+    <span class="eyebrow">The SmartApply directory</span>
+    <h1>Find where you belong.</h1>
+    <p>Explore South African universities, TVET colleges and private colleges — including application fees, closing dates and application information, all in one place.</p>
+    <a href="institutions.html#directory" class="btn btn-light">Find an Institution
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<section class="search-section">
+  <div class="wrap">
+    <div class="search-label">What are you looking for?</div>
+    <div class="search-bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="searchInput" placeholder="Search universities, colleges or courses...">
+      <button class="btn btn-primary" id="searchBtn">Search</button>
+    </div>
+
+    <div class="filter-pills" id="typePills">
+      <button class="pill active" data-type="all">All</button>
+      <button class="pill" data-type="University">Universities</button>
+      <button class="pill" data-type="TVET College">TVET Colleges</button>
+      <button class="pill" data-type="Private College">Private Colleges</button>
+    </div>
+
+    <div class="filter-row">
+      <div class="filter-select">
+        <select id="filterProvince">
+          <option value="all">Province</option>
+          <option>Gauteng</option>
+          <option>Western Cape</option>
+          <option>KwaZulu-Natal</option>
+          <option>Eastern Cape</option>
+          <option>Free State</option>
+        </select>
+      </div>
+      <div class="filter-select">
+        <select id="filterFee">
+          <option value="all">Application fee</option>
+          <option value="free">Free</option>
+          <option value="paid">Paid</option>
+        </select>
+      </div>
+      <div class="filter-select">
+        <select id="filterStatus">
+          <option value="all">Application status</option>
+          <option value="open">Open</option>
+          <option value="closing-soon">Closing soon</option>
+          <option value="closed">Closed</option>
+        </select>
+      </div>
+      <div class="filter-select">
+        <select id="filterArea">
+          <option value="all">Study area</option>
+          <option>Commerce</option>
+          <option>Engineering</option>
+          <option>IT &amp; Computing</option>
+          <option>Health Sciences</option>
+          <option>Humanities</option>
+          <option>Trades &amp; Technical</option>
+        </select>
+      </div>
+      <div class="filter-select">
+        <select id="filterSort">
+          <option value="default">Sort: Featured</option>
+          <option value="closing">Sort: Closing soonest</option>
+          <option value="name">Sort: Name A–Z</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="results-meta" id="resultsMeta">Showing all institutions</div>
+  </div>
+</section>
+
+<section class="featured-section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow dark">Trending with students</span>
+      <h2>Popular right now</h2>
+    </div>
+    <div class="featured-scroll" id="featuredScroll"></div>
+  </div>
+</section>
+
+<section class="directory-section" id="directory">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow dark">The full list</span>
+      <h2>All Universities &amp; Colleges</h2>
+    </div>
+    <div class="inst-grid" id="instGrid"></div>
+    <div class="no-results" id="noResults">No institutions match your filters. Try clearing a filter or searching a different term.</div>
+
+    <div class="disclaimer">
+      <strong>Please note:</strong> Application fees, closing dates, admission requirements and application procedures may change. Information displayed by SmartApply should be confirmed with the relevant institution before submitting an application or making a payment.
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--champagne); padding:0 0 90px;">
+    <br><br><br><br>
+    <div class="wrap">
+    <div class="assist-box">
+      <div>
+        <h3>Need help applying?</h3>
+        <p>Not sure where to start? SmartApply can help you through the application process, step by step.</p>
+      </div>
+      <a href="https://wa.me/27000000000?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-light whatsapp-cta">Chat with SmartApply on WhatsApp
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.37 5.07L2 22l5.07-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a7.9 7.9 0 01-4.03-1.1l-.29-.17-2.97.78.79-2.89-.19-.3A7.93 7.93 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="logo" aria-label="SmartApply home"><img src="images/Logo.png" alt="SmartApply logo" style="height:42px; width:auto; display:block;"></a>
+        <p>Your application. Your future. Made simple.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="institutions.html">Universities &amp; Colleges</a></li>
+          <li><a href="howitworks.html">How It Works</a></li>
+          <li><a href="pricings.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="popia-notice.html">POPIA Notice</a></li>
+          <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="https://wa.me/27000000000?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="whatsapp-cta">WhatsApp</a></li>
+          <li><a href="mailto:hello@smartapply.co.za">Email</a></li>
+          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Social Media</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SmartApply. All rights reserved.</span>
+      <span>Made for South African students.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <button class="modal-close" id="modalClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="modal-eyebrow" id="modalType">University · Gauteng</div>
+      <h3 id="modalName">Institution Name</h3>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <h4>Application information</h4>
+        <div class="modal-facts">
+          <div class="fact"><div class="lbl">Applications</div><div class="val" id="modalStatus">Open</div></div>
+          <div class="fact"><div class="lbl">App. fee</div><div class="val" id="modalFee">R100</div></div>
+          <div class="fact"><div class="lbl">Closing date</div><div class="val" id="modalClosing">30 September 2026</div></div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <h4>What you'll need</h4>
+        <ul class="modal-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>ID document</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Latest academic results</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Personal and contact details</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Other documents depending on programme</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <h4>How to apply</h4>
+        <p id="modalHowTo">Applications are submitted through the institution's official application system. SmartApply can guide you through each step and help you get everything ready before you submit.</p>
+      </div>
+      <div class="modal-actions">
+        <a href="https://wa.me/27000000000?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-primary whatsapp-cta">Apply with SmartApply</a>
+        <a href="https://www.example.com" class="btn btn-outline" id="modalWebsite" target="_blank" rel="noopener">Visit Institution Website</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const WHATSAPP_LINK = "https://wa.me/27000000000?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application";
+
+  const institutions = [
+    { name:"University of Pretoria", type:"University", province:"Gauteng", fee:100, status:"open", closing:"30 September 2026", area:"Commerce", featured:true, site:"https://www.up.ac.za" },
+    { name:"University of Johannesburg", type:"University", province:"Gauteng", fee:0, status:"closing-soon", closing:"20 September 2026", area:"Engineering", featured:true, site:"https://www.uj.ac.za" },
+    { name:"University of Cape Town", type:"University", province:"Western Cape", fee:150, status:"open", closing:"31 July 2026", area:"Health Sciences", featured:true, site:"https://www.uct.ac.za" },
+    { name:"University of KwaZulu-Natal", type:"University", province:"KwaZulu-Natal", fee:0, status:"open", closing:"29 September 2026", area:"Humanities", featured:false, site:"https://www.ukzn.ac.za" },
+    { name:"Nelson Mandela University", type:"University", province:"Eastern Cape", fee:100, status:"closed", closing:"Closed for 2027 intake", area:"IT & Computing", featured:false, site:"https://www.mandela.ac.za" },
+    { name:"Tshwane North TVET College", type:"TVET College", province:"Gauteng", fee:0, status:"open", closing:"15 October 2026", area:"Trades & Technical", featured:true, site:"https://www.tnc.edu.za" },
+    { name:"False Bay TVET College", type:"TVET College", province:"Western Cape", fee:0, status:"open", closing:"30 November 2026", area:"Trades & Technical", featured:false, site:"https://www.falsebaycollege.co.za" },
+    { name:"Umfolozi TVET College", type:"TVET College", province:"KwaZulu-Natal", fee:0, status:"closing-soon", closing:"25 September 2026", area:"Engineering", featured:true, site:"https://www.umfolozicollege.edu.za" },
+    { name:"Buffalo City TVET College", type:"TVET College", province:"Eastern Cape", fee:0, status:"open", closing:"20 November 2026", area:"IT & Computing", featured:false, site:"https://www.bccollege.co.za" },
+    { name:"Rosebank College", type:"Private College", province:"Gauteng", fee:150, status:"open", closing:"Rolling admissions", area:"Commerce", featured:true, site:"https://www.rosebankcollege.co.za" },
+    { name:"Vega School", type:"Private College", province:"Western Cape", fee:250, status:"closing-soon", closing:"18 September 2026", area:"Humanities", featured:false, site:"https://www.vegaschool.com" },
+    { name:"Damelin College", type:"Private College", province:"Gauteng", fee:100, status:"open", closing:"Rolling admissions", area:"IT & Computing", featured:false, site:"https://www.damelin.co.za" },
+  ];
+
+  const state = { type:"all", province:"all", fee:"all", status:"all", area:"all", sort:"default", query:"" };
+
+  function initials(name){
+    return name.split(" ").filter(w => w.length > 2 || /^[A-Z]/.test(w)).slice(0,2).map(w => w[0]).join("").toUpperCase().slice(0,2) || name.slice(0,2).toUpperCase();
+  }
+  function feeLabel(fee){ return fee === 0 ? "Free" : "R" + fee; }
+  function statusLabel(status){ return status === "open" ? "Applications Open" : status === "closing-soon" ? "Closing Soon" : "Closed"; }
+
+  function matches(inst){
+    if(state.type !== "all" && inst.type !== state.type) return false;
+    if(state.province !== "all" && inst.province !== state.province) return false;
+    if(state.fee === "free" && inst.fee !== 0) return false;
+    if(state.fee === "paid" && inst.fee === 0) return false;
+    if(state.status !== "all" && inst.status !== state.status) return false;
+    if(state.area !== "all" && inst.area !== state.area) return false;
+    if(state.query){
+      const q = state.query.toLowerCase();
+      if(!inst.name.toLowerCase().includes(q) && !inst.area.toLowerCase().includes(q) && !inst.type.toLowerCase().includes(q)) return false;
+    }
+    return true;
+  }
+
+  function sortList(list){
+    const arr = [...list];
+    if(state.sort === "name") arr.sort((a,b) => a.name.localeCompare(b.name));
+    if(state.sort === "closing") arr.sort((a,b) => {
+      const rank = s => s.status === "closing-soon" ? 0 : s.status === "open" ? 1 : 2;
+      return rank(a) - rank(b);
+    });
+    return arr;
+  }
+
+  function cardHTML(inst, idx){
+    return `
+      <div class="inst-card">
+        <div class="inst-top">
+          <div class="inst-id">
+            <div class="inst-logo">${initials(inst.name)}</div>
+            <div>
+              <div class="inst-name">${inst.name}</div>
+              <div class="inst-meta">${inst.type} · ${inst.province}</div>
+            </div>
+          </div>
+          <span class="status ${inst.status}">${statusLabel(inst.status)}</span>
+        </div>
+        <div class="inst-divider"></div>
+        <div class="inst-facts">
+          <div class="fact"><div class="lbl">App. Fee</div><div class="val">${feeLabel(inst.fee)}</div></div>
+          <div class="fact"><div class="lbl">Closes</div><div class="val">${inst.closing}</div></div>
+        </div>
+        <div class="inst-actions">
+          <button class="btn btn-outline" onclick="openModal(${idx})">View Details</button>
+          <a href="${WHATSAPP_LINK}" target="_blank" rel="noopener" class="btn btn-primary">Apply</a>
+        </div>
+      </div>`;
+  }
+
+  function featCardHTML(inst){
+    return `
+      <div class="feat-card">
+        <div class="feat-logo">${initials(inst.name)}</div>
+        <h4>${inst.name}</h4>
+        <div class="meta">${inst.type} · ${inst.province}</div>
+        <span class="status ${inst.status}">${statusLabel(inst.status)}</span>
+        <div class="fee-line">${feeLabel(inst.fee)} · Closes ${inst.closing}</div>
+      </div>`;
+  }
+
+  function render(){
+    const filtered = sortList(institutions.filter(matches));
+    const grid = document.getElementById("instGrid");
+    const noResults = document.getElementById("noResults");
+    grid.innerHTML = filtered.map((inst) => cardHTML(inst, institutions.indexOf(inst))).join("");
+    noResults.classList.toggle("show", filtered.length === 0);
+    document.getElementById("resultsMeta").textContent =
+      filtered.length === institutions.length ? `Showing all ${institutions.length} institutions` : `Showing ${filtered.length} of ${institutions.length} institutions`;
+  }
+
+  function renderFeatured(){
+    const featured = institutions.filter(i => i.featured);
+    document.getElementById("featuredScroll").innerHTML = featured.map(featCardHTML).join("");
+  }
+
+  // Filter pills
+  document.querySelectorAll("#typePills .pill").forEach(pill => {
+    pill.addEventListener("click", () => {
+      document.querySelectorAll("#typePills .pill").forEach(p => p.classList.remove("active"));
+      pill.classList.add("active");
+      state.type = pill.dataset.type;
+      render();
+    });
+  });
+
+  document.getElementById("filterProvince").addEventListener("change", e => { state.province = e.target.value; render(); });
+  document.getElementById("filterFee").addEventListener("change", e => { state.fee = e.target.value; render(); });
+  document.getElementById("filterStatus").addEventListener("change", e => { state.status = e.target.value; render(); });
+  document.getElementById("filterArea").addEventListener("change", e => { state.area = e.target.value; render(); });
+  document.getElementById("filterSort").addEventListener("change", e => { state.sort = e.target.value; render(); });
+
+  const searchInput = document.getElementById("searchInput");
+  searchInput.addEventListener("input", e => { state.query = e.target.value; render(); });
+  document.getElementById("searchBtn").addEventListener("click", () => render());
+
+  // Modal
+  const overlay = document.getElementById("modalOverlay");
+  window.openModal = function(idx){
+    const inst = institutions[idx];
+    document.getElementById("modalType").textContent = `${inst.type} · ${inst.province}`;
+    document.getElementById("modalName").textContent = inst.name;
+    document.getElementById("modalStatus").textContent = statusLabel(inst.status);
+    document.getElementById("modalFee").textContent = feeLabel(inst.fee);
+    document.getElementById("modalClosing").textContent = inst.closing;
+    document.getElementById("modalWebsite").href = inst.site;
+    overlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+  };
+  function closeModal(){ overlay.classList.remove("open"); document.body.style.overflow = ""; }
+  document.getElementById("modalClose").addEventListener("click", closeModal);
+  overlay.addEventListener("click", e => { if(e.target === overlay) closeModal(); });
+  document.addEventListener("keydown", e => { if(e.key === "Escape") closeModal(); });
+
+  // Wire up all whatsapp CTAs
+  document.querySelectorAll(".whatsapp-cta").forEach(el => {
+    el.setAttribute("href", WHATSAPP_LINK);
+    el.setAttribute("target", "_blank");
+    el.setAttribute("rel", "noopener");
+  });
+
+  const navToggle = document.querySelector('.burger');
+  const navLinks = document.querySelector('.nav-links');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 900) {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  renderFeatured();
+  render();
+</script>
+
+</body>
+</html>

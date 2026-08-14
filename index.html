@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartApply — Your application. Your future. Made simple.</title>
+<link rel="icon" href="images/Favicon.png" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --champagne:#F8E7C9;
+    --champagne-deep:#F0D9A8;
+    --emerald:#013E3B;
+    --emerald-light:#0B5A54;
+    --soft-white:#FDFBF6;
+    --gold:#C9A24B;
+    --ink:#0B211F;
+    --line: rgba(1,62,59,0.16);
+    --max-w: 1180px;
+    --radius: 22px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--ink);
+    background:var(--soft-white);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img,svg{ display:block; max-width:100%; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
+  button{ font-family:inherit; cursor:pointer; }
+
+  .wrap{ max-width:var(--max-w); margin:0 auto; padding:0 24px; }
+
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk', sans-serif;
+    letter-spacing:-0.02em;
+    line-height:1.03;
+    font-weight:700;
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--emerald);
+    opacity:0.7;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:6px; height:6px;
+    background:var(--gold);
+    border-radius:50%;
+    display:inline-block;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:16px 28px;
+    border-radius:100px;
+    font-weight:600;
+    font-size:0.98rem;
+    border:none;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    white-space:nowrap;
+  }
+  .btn:active{ transform:scale(0.97); }
+  .btn-primary{
+    background:var(--emerald);
+    color:var(--champagne);
+    box-shadow:0 10px 26px -10px rgba(1,62,59,0.55);
+  }
+  .btn-primary:hover{ background:var(--emerald-light); box-shadow:0 14px 30px -10px rgba(1,62,59,0.6); transform:translateY(-2px); }
+  .hero .btn-primary{
+    background:var(--champagne);
+    color:var(--emerald);
+    box-shadow:0 14px 30px -14px rgba(248,231,201,0.8);
+  }
+  .hero .btn-primary:hover{
+    background:#f2dca3;
+    box-shadow:0 18px 32px -16px rgba(248,231,201,0.9);
+  }
+  .btn-outline{
+    background:transparent;
+    color:var(--emerald);
+    border:1.5px solid var(--emerald);
+  }
+  .btn-outline:hover{ background:rgba(1,62,59,0.06); transform:translateY(-2px); }
+  .hero .btn-outline{
+    background:transparent;
+    color:var(--champagne);
+    border:1.5px solid var(--champagne);
+    box-shadow:none;
+  }
+  .hero .btn-outline:hover{
+    background:rgba(248,231,201,0.08);
+    border-color:#f2dca3;
+    box-shadow:0 12px 26px -18px rgba(248,231,201,0.9);
+  }
+  .btn-light{
+    background:var(--champagne);
+    color:var(--emerald);
+  }
+  .btn-light:hover{ background:var(--soft-white); transform:translateY(-2px); }
+  .btn svg{ width:17px; height:17px; }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(248,231,201,0.86);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:76px;
+  }
+  .logo{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:1.3rem;
+    color:var(--emerald);
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo img {
+    height:42px;
+    width:auto;
+    display:block;
+  }
+  .logo .dot{ width:9px; height:9px; background:var(--gold); border-radius:50%; }
+  .nav-links{ display:flex; align-items:center; gap:36px; }
+  .nav-links a{
+    font-size:0.95rem; font-weight:500; color:var(--emerald);
+    position:relative; padding:4px 0;
+  }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:-2px;
+    width:0%; height:2px; background:var(--gold);
+    transition:width .25s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-cta{ display:flex; align-items:center; gap:18px; }
+  .burger{ display:none; background:none; border:none; }
+  .burger svg{ width:26px; height:26px; color:var(--emerald); }
+
+  @media (max-width:900px){
+    .nav-links{
+      display:none;
+      position:absolute;
+      top:76px;
+      left:16px;
+      right:16px;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:18px;
+      background:rgba(248,231,201,0.98);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px 20px;
+      box-shadow:0 18px 38px -18px rgba(1,62,59,0.35);
+      z-index:20;
+    }
+    .nav-links.open{ display:flex; }
+    .burger{ display:block; }
+    .nav-cta .btn-outline{ display:none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      linear-gradient(rgba(0, 0, 0, 0.46), rgba(0, 0, 0, 0.46)),
+      url('images/bg1.png') center/cover no-repeat;
+    position:relative;
+    overflow:hidden;
+    padding:88px 0 60px;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:56px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 5.6vw, 4.5rem);
+    color:var(--champagne);
+    margin-top:18px;
+  }
+  .hero h1 .accent{ color:var(--gold); font-style:italic; font-family:'Space Grotesk',sans-serif; }
+  .hero p.lede{
+    margin-top:22px;
+    font-size:1.14rem;
+    max-width:480px;
+    color:var(--champagne);
+    line-height:1.6;
+  }
+  .hero-actions{ display:flex; gap:16px; margin-top:34px; flex-wrap:wrap; }
+
+  .hero-visual{
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .boarding-pass{
+    position:relative;
+    background:var(--emerald);
+    border-radius:26px;
+    width:100%;
+    max-width:400px;
+    padding:30px 28px 34px;
+    color:var(--champagne);
+    box-shadow:0 30px 60px -20px rgba(1,62,59,0.5);
+    transform:rotate(3deg);
+  }
+  .boarding-pass::before,
+  .boarding-pass::after{
+    content:"";
+    position:absolute;
+    width:34px; height:34px;
+    background:var(--soft-white);
+    border-radius:50%;
+    top:50%;
+    transform:translateY(-50%);
+  }
+  .boarding-pass::before{ left:-17px; }
+  .boarding-pass::after{ right:-17px; }
+  .bp-row{ display:flex; justify-content:space-between; align-items:flex-start; }
+  .bp-label{ font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.12em; text-transform:uppercase; opacity:0.65; }
+  .bp-name{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.5rem; margin-top:4px; }
+  .bp-divider{
+    margin:22px 0;
+    border-top:1.5px dashed rgba(248,231,201,0.35);
+  }
+  .bp-grid{ display:grid; grid-template-columns:1fr 1fr; gap:18px 10px; }
+  .bp-grid div .bp-label{ margin-bottom:4px; }
+  .bp-grid div .bp-val{ font-family:'IBM Plex Mono',monospace; font-size:0.95rem; font-weight:500; }
+  .bp-status{
+    margin-top:24px;
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(248,231,201,0.14);
+    padding:8px 14px;
+    border-radius:100px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase;
+  }
+  .bp-status .pulse{ width:7px; height:7px; border-radius:50%; background:#8FE3B0; animation:pulse 1.8s infinite; }
+  @keyframes pulse{ 0%,100%{ opacity:1; } 50%{ opacity:0.3; } }
+
+  .chip-float{
+    position:absolute;
+    background:var(--soft-white);
+    border-radius:16px;
+    padding:12px 16px;
+    box-shadow:0 16px 34px -14px rgba(1,62,59,0.35);
+    display:flex; align-items:center; gap:10px;
+    font-size:0.85rem; font-weight:600; color:var(--emerald);
+  }
+  .chip-1{ top:-6%; right:-6%; animation:float1 5s ease-in-out infinite; }
+  .chip-2{ bottom:2%; left:-10%; animation:float2 6s ease-in-out infinite; }
+  @keyframes float1{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-10px);} }
+  @keyframes float2{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(10px);} }
+  .chip-dot{ width:22px; height:22px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; }
+  .chip-dot svg{ width:13px; height:13px; fill:white; }
+
+  @media (max-width:900px){
+    .hero .wrap{ grid-template-columns:1fr; }
+    .hero-visual{ margin-top:20px; }
+    .boarding-pass{ transform:rotate(0); max-width:340px; }
+  }
+
+  /* ---------- TRUST STRIP ---------- */
+  .trust-strip{
+    background:var(--emerald);
+    padding:20px 0;
+    overflow:hidden;
+  }
+  .trust-track{
+    display:flex;
+    gap:60px;
+    white-space:nowrap;
+    animation:scroll 22s linear infinite;
+    width:max-content;
+  }
+  .trust-track span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    letter-spacing:0.16em;
+    color:var(--champagne);
+    opacity:0.85;
+    display:flex; align-items:center; gap:14px;
+  }
+  .trust-track span::after{ content:"◆"; color:var(--gold); font-size:0.6rem; margin-left:14px; }
+  @keyframes scroll{ 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{ padding:100px 0; }
+  .section-soft{ background:var(--soft-white); }
+  .section-champagne{ background:var(--champagne); }
+  .section-emerald{ background:var(--emerald); color:var(--champagne); }
+
+  .section-head{ max-width:640px; margin-bottom:56px; }
+  .section-head h2{
+    font-size:clamp(1.9rem, 3.6vw, 2.7rem);
+    margin-top:14px;
+    color:var(--emerald);
+  }
+  .section-emerald .section-head h2{ color:var(--champagne); }
+  .section-head p{
+    margin-top:16px;
+    font-size:1.06rem;
+    color:rgba(11,33,31,0.72);
+    line-height:1.6;
+  }
+  .section-emerald .section-head p{ color:rgba(248,231,201,0.78); }
+  .section-emerald .eyebrow{ color:var(--champagne); }
+
+  .link-arrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-weight:600; color:var(--emerald);
+    margin-top:18px;
+    border-bottom:1.5px solid transparent;
+    transition:border-color .2s ease, gap .2s ease;
+  }
+  .link-arrow:hover{ border-color:var(--emerald); gap:12px; }
+  .section-emerald .link-arrow{ color:var(--champagne); }
+  .section-emerald .link-arrow:hover{ border-color:var(--champagne); }
+
+  /* ---------- INTRO ---------- */
+  .intro-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+  @media (max-width:800px){ .intro-grid{ grid-template-columns:1fr; gap:24px; } }
+
+  /* ---------- HOW IT WORKS ---------- */
+  .process-rail{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+    margin-top:10px;
+  }
+  .process-card{
+    background:var(--soft-white);
+    border-radius:var(--radius);
+    padding:34px 28px;
+    border:1px solid var(--line);
+    position:relative;
+  }
+  .process-num{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.8rem;
+    color:var(--gold);
+    letter-spacing:0.1em;
+  }
+  .process-card h3{
+    font-size:1.5rem;
+    margin-top:14px;
+    color:var(--emerald);
+  }
+  .process-card p{ margin-top:10px; color:rgba(11,33,31,0.7); line-height:1.55; font-size:0.98rem; }
+  .process-rail-line{
+    display:none;
+  }
+  @media (max-width:860px){ .process-rail{ grid-template-columns:1fr; } }
+
+  /* ---------- UNIVERSITY/COLLEGE ---------- */
+  .path-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+  }
+  .path-card{
+    border-radius:28px;
+    padding:44px 34px;
+    min-height:320px;
+    display:flex; flex-direction:column; justify-content:space-between;
+    position:relative;
+    overflow:hidden;
+    transition:transform .3s ease;
+  }
+  .path-card:hover{ transform:translateY(-6px); }
+  .path-card.university{ background:var(--emerald); color:var(--champagne); }
+  .path-card.college{ background:var(--gold); color:var(--emerald); }
+  .path-tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase;
+    opacity:0.75;
+  }
+  .path-card h3{ font-size:2rem; margin-top:14px; }
+  .path-card p{ margin-top:12px; max-width:280px; line-height:1.55; opacity:0.9; font-size:0.98rem; }
+  .path-card .link-arrow{ color:inherit; }
+  .path-card .link-arrow:hover{ border-color:currentColor; }
+  .path-glyph{
+    position:absolute; right:-30px; bottom:-40px;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:9rem; font-weight:700;
+    opacity:0.08;
+  }
+  @media (max-width:800px){ .path-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- WHY ---------- */
+  .why-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+  }
+  .why-card{ padding:8px 4px; }
+  .why-icon{
+    width:52px; height:52px;
+    border-radius:14px;
+    background:var(--champagne);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:18px;
+  }
+  .why-icon svg{ width:24px; height:24px; color:var(--emerald); }
+  .why-card .tag{ font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+  .why-card h3{ font-size:1.2rem; margin-top:8px; color:var(--emerald); font-family:'Space Grotesk',sans-serif; }
+  .why-card p{ margin-top:8px; font-size:0.94rem; line-height:1.55; color:rgba(11,33,31,0.7); }
+  @media (max-width:900px){ .why-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:560px){ .why-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- DIRECTORY (ticket cards) ---------- */
+  .ticket-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:26px;
+  }
+  .ticket{
+    background:var(--soft-white);
+    border-radius:20px;
+    border:1px solid var(--line);
+    padding:26px 24px 22px;
+    position:relative;
+  }
+  .ticket-kind{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--gold); font-weight:600;
+  }
+  .ticket h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.25rem;
+    margin-top:10px;
+    color:var(--emerald);
+  }
+  .ticket-perf{
+    margin:20px 0;
+    border-top:1.5px dashed var(--line);
+    position:relative;
+  }
+  .ticket-perf::before, .ticket-perf::after{
+    content:""; position:absolute; top:-9px;
+    width:18px; height:18px; background:var(--champagne);
+    border-radius:50%;
+  }
+  .ticket-perf::before{ left:-24px; }
+  .ticket-perf::after{ right:-24px; }
+  .ticket-meta{ display:flex; justify-content:space-between; }
+  .ticket-meta div .lbl{ font-family:'IBM Plex Mono',monospace; font-size:0.66rem; text-transform:uppercase; opacity:0.55; }
+  .ticket-meta div .val{ font-family:'IBM Plex Mono',monospace; font-size:0.92rem; font-weight:600; color:var(--emerald); margin-top:4px; }
+  @media (max-width:900px){ .ticket-row{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:600px){ .ticket-row{ grid-template-columns:1fr; } }
+
+  .directory-cta{ text-align:center; margin-top:48px; }
+
+  /* ---------- PRICING ---------- */
+  .price-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:26px;
+  }
+  .price-card{
+    background:var(--soft-white);
+    border:1px solid var(--line);
+    border-radius:24px;
+    padding:34px 28px;
+    display:flex; flex-direction:column;
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .price-card:hover{ transform:translateY(-6px); box-shadow:0 24px 44px -22px rgba(1,62,59,0.3); }
+  .price-card.featured{ background:var(--emerald); color:var(--champagne); border-color:var(--emerald); }
+  .price-tag{ font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; opacity:0.7; }
+  .price-amt{ font-family:'Space Grotesk',sans-serif; font-size:2.6rem; font-weight:700; margin-top:10px; color:var(--emerald); }
+  .price-card.featured .price-amt{ color:var(--champagne); }
+  .price-card p.desc{ margin-top:10px; font-size:0.95rem; line-height:1.5; opacity:0.75; flex-grow:1; }
+  .price-card .btn{ margin-top:24px; width:100%; justify-content:center; }
+  @media (max-width:900px){ .price-row{ grid-template-columns:1fr; } }
+
+  .fee-note{
+    margin-top:32px;
+    font-size:0.86rem;
+    color:rgba(11,33,31,0.55);
+    max-width:560px;
+  }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .proof-grid{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:48px;
+    align-items:center;
+  }
+  .quote-card{
+    background:var(--emerald);
+    color:var(--champagne);
+    border-radius:26px;
+    padding:40px 36px;
+    position:relative;
+  }
+  .quote-mark{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:3.5rem; color:var(--gold); line-height:0.6;
+    display:block; margin-bottom:14px;
+  }
+  .quote-card p.qtext{ font-size:1.2rem; line-height:1.55; font-family:'Space Grotesk',sans-serif; font-weight:500; }
+  .quote-attr{ margin-top:22px; font-family:'IBM Plex Mono',monospace; font-size:0.82rem; opacity:0.75; }
+
+  .stat-list{ display:flex; flex-direction:column; gap:26px; }
+  .stat-row{ display:flex; align-items:baseline; gap:16px; border-bottom:1px solid var(--line); padding-bottom:20px; }
+  .stat-num{ font-family:'Space Grotesk',sans-serif; font-size:2.4rem; font-weight:700; color:var(--emerald); }
+  .stat-label{ font-family:'IBM Plex Mono',monospace; font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase; color:rgba(11,33,31,0.6); }
+  @media (max-width:800px){ .proof-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- FAQ ---------- */
+  .faq-list{ max-width:760px; }
+  .faq-item{
+    border-bottom:1px solid var(--line);
+  }
+  .faq-q{
+    width:100%;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:24px 0;
+    background:none; border:none;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.08rem; font-weight:600;
+    color:var(--emerald);
+    text-align:left;
+  }
+  .faq-q .plus{
+    font-size:1.4rem; font-weight:400; transition:transform .3s ease; flex-shrink:0; margin-left:20px; color:var(--gold);
+  }
+  .faq-item.open .faq-q .plus{ transform:rotate(45deg); }
+  .faq-a{
+    max-height:0; overflow:hidden;
+    transition:max-height .35s ease, padding .35s ease;
+  }
+  .faq-a p{ padding-bottom:24px; color:rgba(11,33,31,0.72); line-height:1.6; max-width:640px; }
+  .faq-item.open .faq-a{ max-height:200px; }
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{
+    text-align:center;
+    padding:110px 0;
+  }
+  .final-cta h2{
+    font-size:clamp(2.1rem,4.6vw,3.4rem);
+    color:var(--champagne);
+    max-width:680px;
+    margin:0 auto;
+  }
+  .final-cta p{
+    margin:20px auto 0;
+    max-width:480px;
+    color:rgba(248,231,201,0.8);
+    font-size:1.08rem;
+  }
+  .final-cta .btn{ margin-top:34px; }
+  .final-cta .sub{
+    margin-top:16px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.8rem;
+    color:rgba(248,231,201,0.7);
+    letter-spacing:0.04em;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--ink); color:var(--champagne); padding:70px 0 30px; }
+  .footer-top{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr 1fr;
+    gap:40px;
+    padding-bottom:50px;
+    border-bottom:1px solid rgba(248,231,201,0.14);
+  }
+  .footer-top .logo{ color:var(--champagne); }
+  .footer-top p{ margin-top:14px; color:rgba(248,231,201,0.6); font-size:0.92rem; max-width:260px; line-height:1.5; }
+  .footer-col h4{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:16px;
+  }
+  .footer-col ul{ display:flex; flex-direction:column; gap:12px; }
+  .footer-col a{ font-size:0.92rem; color:rgba(248,231,201,0.8); transition:color .2s; }
+  .footer-col a:hover{ color:var(--gold); }
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top:26px;
+    font-size:0.82rem;
+    color:rgba(248,231,201,0.45);
+    flex-wrap:wrap; gap:12px;
+  }
+  @media (max-width:800px){
+    .footer-top{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:500px){
+    .footer-top{ grid-template-columns:1fr; }
+  }
+
+  /* reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+
+  :focus-visible{
+    outline:2.5px solid var(--gold);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="index.html" class="logo" aria-label="SmartApply home"><img src="images/Logo.png" alt="SmartApply logo"></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="institutions.html">Universities &amp; Colleges</a>
+      <a href="howitworks.html">How It Works</a>
+      <a href="pricings.html">Pricing</a>
+    </div>
+    <div class="nav-cta">
+      <a href="https://wa.me/27000000000?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-outline whatsapp-cta">Chat on WhatsApp</a>
+      <button class="burger" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow">Applications made simple</span>
+      <h1>Your application.<br>Your future.<br><span class="accent">Made simple.</span></h1>
+      <p class="lede">Apply to universities and colleges without the confusion. SmartApply helps you navigate your applications from start to submission — right from WhatsApp.</p>
+      <div class="hero-actions">
+        <a href="https://wa.me/27000000000?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-primary whatsapp-cta">
+          Start Your Application
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.37 5.07L2 22l5.07-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a7.9 7.9 0 01-4.03-1.1l-.29-.17-2.97.78.79-2.89-.19-.3A7.93 7.93 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>
+        </a>
+        <a href="institutions.html" class="btn btn-outline">Explore Institutions</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="boarding-pass">
+        <div class="bp-row">
+          <div>
+            <div class="bp-label">Applicant</div>
+            <div class="bp-name">Lindiwe M.</div>
+          </div>
+          <div style="text-align:right">
+            <div class="bp-label">Status</div>
+            <div class="bp-name" style="font-size:1.1rem">Ready</div>
+          </div>
+        </div>
+        <div class="bp-divider"></div>
+        <div class="bp-grid">
+          <div><div class="bp-label">Destination</div><div class="bp-val">B.Com — UJ</div></div>
+          <div><div class="bp-label">Closing Date</div><div class="bp-val">30 Sep</div></div>
+          <div><div class="bp-label">Assistance</div><div class="bp-val">Standard</div></div>
+          <div><div class="bp-label">Channel</div><div class="bp-val">WhatsApp</div></div>
+        </div>
+        <div class="bp-status"><span class="pulse"></span>Chat open — we're helping now</div>
+      </div>
+      <div class="chip-float chip-1">
+        <div class="chip-dot">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.37 5.07L2 22l5.07-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+        </div>
+        Application submitted
+      </div>
+      <div class="chip-float chip-2">30+ institutions</div>
+    </div>
+  </div>
+</section>
+
+<div class="trust-strip">
+  <div class="trust-track" id="trustTrack">
+    <span>Universities</span>
+    <span>TVET Colleges</span>
+    <span>Private Colleges</span>
+    <span>Application Assistance</span>
+    <span>Universities</span>
+    <span>TVET Colleges</span>
+    <span>Private Colleges</span>
+    <span>Application Assistance</span>
+  </div>
+</div>
+
+<section class="section-soft">
+  <div class="wrap intro-grid">
+    <div>
+      <span class="eyebrow">Why SmartApply exists</span>
+      <h2 style="margin-top:14px; font-size:clamp(1.9rem,3.6vw,2.6rem); color:var(--emerald);">Applying after matric shouldn't be this complicated.</h2>
+    </div>
+    <div>
+      <p style="font-size:1.06rem; line-height:1.65; color:rgba(11,33,31,0.75);">Different institutions have different requirements, application fees and closing dates. SmartApply brings the information and application assistance together in one simple place — so you always know your next step.</p>
+      <a href="howitworks.html" class="link-arrow">See How It Works
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section-champagne" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Three steps, start to finish</span>
+      <h2>How It Works</h2>
+      <p>No portals to juggle, no guesswork. Just a straightforward path from choosing your institution to submitting your application.</p>
+    </div>
+    <div class="process-rail">
+      <div class="process-card">
+        <div class="process-num">01</div>
+        <h3>Choose</h3>
+        <p>Find the universities or colleges you want to apply to, all in one directory.</p>
+      </div>
+      <div class="process-card">
+        <div class="process-num">02</div>
+        <h3>Chat</h3>
+        <p>Connect with SmartApply on WhatsApp and tell us where you want to apply.</p>
+      </div>
+      <div class="process-card">
+        <div class="process-num">03</div>
+        <h3>Apply</h3>
+        <p>We help you through the application process and keep you informed along the way.</p>
+      </div>
+    </div>
+    <div style="margin-top:44px;">
+      <a href="https://wa.me/27000000000?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-primary whatsapp-cta">Start Your Application
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section-soft" id="institutions">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Two paths, one platform</span>
+      <h2>Where do you want to go next?</h2>
+      <p>Whether you're planning for university or college, we'll help you take the next step.</p>
+    </div>
+    <div class="path-grid">
+      <div class="path-card university">
+        <div>
+          <div class="path-tag">University</div>
+          <h3>Explore Universities</h3>
+          <p>View application information, fees and closing dates for supported universities.</p>
+        </div>
+        <a href="institutions.html" class="link-arrow">View Universities
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <div class="path-glyph">U</div>
+      </div>
+      <div class="path-card college">
+        <div>
+          <div class="path-tag">College</div>
+          <h3>Explore Colleges</h3>
+          <p>Explore TVET and other supported college opportunities near you.</p>
+        </div>
+        <a href="institutions.html" class="link-arrow">View Colleges
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <div class="path-glyph">C</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-champagne">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The SmartApply difference</span>
+      <h2>Why SmartApply?</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+        <div class="tag">Simple</div>
+        <h3>No confusing process</h3>
+        <p>We make the application journey easier to understand, one step at a time.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        <div class="tag">Affordable</div>
+        <h3>Built for students</h3>
+        <p>Straightforward packages designed with students' budgets in mind.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+        <div class="tag">Convenient</div>
+        <h3>Apply from your phone</h3>
+        <p>Get assistance through WhatsApp, wherever you are.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="tag">Support</div>
+        <h3>You're not doing it alone</h3>
+        <p>Get help whenever you're unsure what to do next.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-soft">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Directory preview</span>
+      <h2>Find your next institution</h2>
+      <p>A sample of what's inside — real institutions, real fees, real closing dates.</p>
+    </div>
+    <div class="ticket-row">
+      <div class="ticket">
+        <div class="ticket-kind">University</div>
+        <h3>University of Johannesburg</h3>
+        <div class="ticket-perf"></div>
+        <div class="ticket-meta">
+          <div><div class="lbl">App. Fee</div><div class="val">Free</div></div>
+          <div><div class="lbl">Closes</div><div class="val">30 Sep</div></div>
+        </div>
+      </div>
+      <div class="ticket">
+        <div class="ticket-kind">TVET College</div>
+        <h3>Tshwane North TVET</h3>
+        <div class="ticket-perf"></div>
+        <div class="ticket-meta">
+          <div><div class="lbl">App. Fee</div><div class="val">Free</div></div>
+          <div><div class="lbl">Closes</div><div class="val">15 Nov</div></div>
+        </div>
+      </div>
+      <div class="ticket">
+        <div class="ticket-kind">Private College</div>
+        <h3>Rosebank College</h3>
+        <div class="ticket-perf"></div>
+        <div class="ticket-meta">
+          <div><div class="lbl">App. Fee</div><div class="val">R150</div></div>
+          <div><div class="lbl">Closes</div><div class="val">Rolling</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="directory-cta">
+      <a href="institutions.html" class="btn btn-outline">View All Universities &amp; Colleges
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section-champagne" id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Simple, upfront packages</span>
+      <h2>Choose the help you need</h2>
+    </div>
+    <div class="price-row">
+      <div class="price-card">
+        <div class="price-tag">Starter</div>
+        <div class="price-amt">R100</div>
+        <p class="desc">For students applying to a few institutions.</p>
+        <a href="https://wa.me/27000000000?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-outline whatsapp-cta">Get Started</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-tag">Standard</div>
+        <div class="price-amt">R200</div>
+        <p class="desc">For students who need assistance with multiple applications.</p>
+        <a href="https://wa.me/27000000000?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-light whatsapp-cta">Get Started</a>
+      </div>
+      <div class="price-card">
+        <div class="price-tag">Premium</div>
+        <div class="price-amt">R350</div>
+        <p class="desc">For students who need more extensive application assistance.</p>
+        <a href="https://wa.me/27000000000?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-outline whatsapp-cta">Get Started</a>
+      </div>
+    </div>
+    <a href="pricings.html" class="link-arrow" style="margin-top:36px; display:inline-flex;">View All Packages
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <p class="fee-note">SmartApply service fees are separate from any application fees charged by universities or colleges.</p>
+  </div>
+</section>
+
+<section class="section-soft">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Real students, real progress</span>
+      <h2>Students we've helped</h2>
+    </div>
+    <div class="proof-grid">
+      <div class="quote-card">
+        <span class="quote-mark">&ldquo;</span>
+        <p class="qtext">I was so confused about where to apply. SmartApply helped me understand everything and submit my applications.</p>
+        <div class="quote-attr">— Thando, Gauteng</div>
+      </div>
+      <div class="stat-list">
+        <div class="stat-row"><div class="stat-num">250+</div><div class="stat-label">Applications assisted</div></div>
+        <div class="stat-row"><div class="stat-num">30+</div><div class="stat-label">Institutions</div></div>
+        <div class="stat-row" style="border-bottom:none;"><div class="stat-num">200+</div><div class="stat-label">Students helped</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-champagne" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Common questions</span>
+      <h2>FAQs</h2>
+    </div>
+    <div class="faq-list" id="faqList">
+      <div class="faq-item open">
+        <button class="faq-q">Can SmartApply help with university applications?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes. SmartApply assists students with applications to supported universities.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do you help with colleges too?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes. SmartApply is designed for universities, TVET colleges and other supported colleges.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Does SmartApply guarantee admission?<span class="plus">+</span></button>
+        <div class="faq-a"><p>No. SmartApply assists with the application process. Admission decisions are made by the institution.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I pay university application fees separately?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes. Where an institution charges an application fee, that fee is separate from your SmartApply service fee.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How do I get started?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Simply click "Start Your Application" and chat with SmartApply on WhatsApp.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-emerald final-cta">
+  <div class="wrap">
+    <h2>Ready to take your next step?</h2>
+    <p>Let SmartApply make your university or college application simpler.</p>
+    <a href="https://wa.me/27000000000?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-light whatsapp-cta">Start Your Application
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.37 5.07L2 22l5.07-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a7.9 7.9 0 01-4.03-1.1l-.29-.17-2.97.78.79-2.89-.19-.3A7.93 7.93 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>
+    </a>
+    <div class="sub">Chat with SmartApply on WhatsApp</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="logo" aria-label="SmartApply home"><img src="images/Logo.png" alt="SmartApply logo" style="height:42px; width:auto; display:block;"></a>
+        <p>Your application. Your future. Made simple.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="institutions.html">Universities &amp; Colleges</a></li>
+          <li><a href="howitworks.html">How It Works</a></li>
+          <li><a href="pricings.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="popia-notice.html">POPIA Notice</a></li>
+          <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="https://wa.me/27000000000?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="whatsapp-cta">WhatsApp</a></li>
+          <li><a href="mailto:hello@smartapply.co.za">Email</a></li>
+          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Social Media</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SmartApply. All rights reserved.</span>
+      <span>Made for South African students.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navToggle = document.querySelector('.burger');
+  const navLinks = document.querySelector('.nav-links');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 900) {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // WhatsApp CTA — replace with your real WhatsApp number/link
+  const WHATSAPP_LINK = "https://wa.me/27000000000?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application";
+  document.querySelectorAll('.whatsapp-cta').forEach(el => {
+    el.setAttribute('href', WHATSAPP_LINK);
+    el.setAttribute('target', '_blank');
+    el.setAttribute('rel', 'noopener');
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.process-card, .path-card, .why-card, .ticket, .price-card, .quote-card, .stat-row');
+  revealEls.forEach(el => {
+    el.style.opacity = 0;
+    el.style.transform = 'translateY(18px)';
+    el.style.transition = 'opacity .6s ease, transform .6s ease';
+  });
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = 'translateY(0)';
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
