@@ -743,12 +743,32 @@
   function feeLabel(fee){ return fee === 0 ? "Free" : fee === null ? "Check portal" : "R" + fee; }
   function statusLabel(status){ return status === "open" ? "Applications Open" : status === "closing-soon" ? "Closing Soon" : "Closed"; }
 
+  function parseClosingDate(closing){
+    const match = closing.match(/^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/);
+    if(!match) return null;
+    const date = new Date(`${match[2]} ${match[1]}, ${match[3]} 23:59:59`);
+    return Number.isNaN(date.getTime()) ? null : date;
+  }
+
+  function currentStatus(inst){
+    const closingDate = parseClosingDate(inst.closing);
+    if(!closingDate) return inst.status;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const daysUntilClosing = Math.ceil((closingDate - today) / 86400000);
+    if(daysUntilClosing < 0) return "closed";
+    if(daysUntilClosing <= 30) return "closing-soon";
+    return "open";
+  }
+
+  institutions.forEach(inst => { inst.status = currentStatus(inst); });
+
   function matches(inst){
     if(state.type !== "all" && inst.type !== state.type) return false;
     if(state.province !== "all" && inst.province !== state.province) return false;
     if(state.fee === "free" && inst.fee !== 0) return false;
     if(state.fee === "paid" && inst.fee === 0) return false;
-    if(state.status !== "all" && inst.status !== state.status) return false;
+    if(state.status !== "all" && currentStatus(inst) !== state.status) return false;
     if(state.area !== "all" && inst.area !== state.area) return false;
     if(state.query){
       const q = state.query.toLowerCase();
@@ -761,13 +781,14 @@
     const arr = [...list];
     if(state.sort === "name") arr.sort((a,b) => a.name.localeCompare(b.name));
     if(state.sort === "closing") arr.sort((a,b) => {
-      const rank = s => s.status === "closing-soon" ? 0 : s.status === "open" ? 1 : 2;
-      return rank(a) - rank(b);
+      const dateValue = inst => parseClosingDate(inst.closing)?.getTime() ?? Number.POSITIVE_INFINITY;
+      return dateValue(a) - dateValue(b);
     });
     return arr;
   }
 
   function cardHTML(inst, idx){
+    const status = currentStatus(inst);
     return `
       <div class="inst-card">
         <div class="inst-top">
@@ -778,7 +799,7 @@
               <div class="inst-meta">${inst.type} · ${inst.province}</div>
             </div>
           </div>
-          <span class="status ${inst.status}">${statusLabel(inst.status)}</span>
+          <span class="status ${status}">${statusLabel(status)}</span>
         </div>
         <div class="inst-divider"></div>
         <div class="inst-facts">
@@ -794,12 +815,13 @@
 
   function featCardHTML(inst){
     const idx = institutions.indexOf(inst);
+    const status = currentStatus(inst);
     return `
       <div class="feat-card">
         <div class="feat-logo">${initials(inst.name)}</div>
         <h4>${inst.name}</h4>
         <div class="meta">${inst.type} · ${inst.province}</div>
-        <span class="status ${inst.status}">${statusLabel(inst.status)}</span>
+        <span class="status ${status}">${statusLabel(status)}</span>
         <div class="fee-line">${feeLabel(inst.fee)} · Closes ${inst.closing}</div>
         <div class="inst-actions">
           <button class="btn btn-outline btn-sm" onclick="openModal(${idx})" type="button">View Details</button>
@@ -858,7 +880,7 @@
     const inst = institutions[idx];
     document.getElementById("modalType").textContent = `${inst.type} · ${inst.province}`;
     document.getElementById("modalName").textContent = inst.name;
-    document.getElementById("modalStatus").textContent = statusLabel(inst.status);
+    document.getElementById("modalStatus").textContent = statusLabel(currentStatus(inst));
     document.getElementById("modalFee").textContent = feeLabel(inst.fee);
     document.getElementById("modalClosing").textContent = inst.closing;
     document.getElementById("modalWebsite").href = inst.site;
