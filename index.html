@@ -150,7 +150,7 @@
     width:0%; height:2px; background:var(--gold);
     transition:width .25s ease;
   }
-  .nav-links a:hover::after{ width:100%; }
+  .nav-links a:hover::after,.nav-links a.active::after{ width:100%; background:var(--gold); }
   .nav-cta{ display:flex; align-items:center; gap:18px; }
   .burger{ display:none; background:none; border:none; }
   .burger svg{ width:26px; height:26px; color:var(--emerald); }
@@ -342,10 +342,12 @@
   /* ---------- HOW IT WORKS ---------- */
   .process-rail{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(5,minmax(0,1fr));
     gap:28px;
     margin-top:10px;
   }
+  @media (max-width:1050px){ .process-rail{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
+  @media (max-width:700px){ .process-rail{ grid-template-columns:1fr; } }
   .process-card{
     background:var(--soft-white);
     border-radius:var(--radius);
@@ -630,10 +632,10 @@
   <nav class="wrap">
     <a href="index.html" class="logo" aria-label="SmartApply home"><img src="images/Logo.png" alt="SmartApply logo"></a>
     <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="institutions.html">Universities &amp; Colleges</a>
+      <a href="index.html" class="active">Home</a>
+      <a href="institutions.html">Institutions</a>
+      <a href="documents.html">Documents</a>
       <a href="howitworks.html">How It Works</a>
-      <a href="pricings.html">Pricing</a>
     </div>
     <div class="nav-cta">
       <a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-outline whatsapp-cta">Chat on WhatsApp</a>
@@ -647,13 +649,12 @@
 <section class="hero" id="home">
   <div class="wrap">
     <div class="hero-copy">
-      <span class="eyebrow">Applications made simple</span>
-      <h1>Your application.<br>Your future.<br><span class="accent">Made simple.</span></h1>
-      <p class="lede">Apply to universities and colleges without the confusion. SmartApply helps you navigate your applications from start to submission.</p>
+      <span class="eyebrow">Explore. Prepare. Apply.</span>
+      <h1>Your Future Starts With Knowing Your Options</h1>
+      <p class="lede">Finding and applying to a university or college after matric can be confusing. SmartApply brings important application information together in one place, helping you discover institutions, understand what you need, prepare your documents and find where to apply.</p>
       <div class="hero-actions">
         <a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-primary whatsapp-cta">
-          Start Your Application
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.37 5.07L2 22l5.07-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a7.9 7.9 0 01-4.03-1.1l-.29-.17-2.97.78.79-2.89-.19-.3A7.93 7.93 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>
+          Get Application Help
         </a>
         <a href="institutions.html" class="btn btn-outline">Explore Institutions</a>
       </div>
@@ -677,7 +678,7 @@
           <div><div class="bp-label">Assistance</div><div class="bp-val">Standard</div></div>
           <div><div class="bp-label">Channel</div><div class="bp-val">WhatsApp</div></div>
         </div>
-        <div class="bp-status"><span class="pulse"></span>Chat open, we're helping now</div>
+        <div class="bp-status"><span class="pulse"></span>Information first. Assistance when you need it.</div>
       </div>
       <div class="chip-float chip-1">
         <div class="chip-dot">
@@ -695,11 +696,11 @@
     <span>Universities</span>
     <span>TVET Colleges</span>
     <span>Private Colleges</span>
-    <span>Application Assistance</span>
+    <span>Application Information</span>
     <span>Universities</span>
     <span>TVET Colleges</span>
     <span>Private Colleges</span>
-    <span>Application Assistance</span>
+    <span>Application Information</span>
   </div>
 </div>
 
@@ -707,13 +708,32 @@
   <div class="wrap intro-grid">
     <div>
       <span class="eyebrow">Why SmartApply exists</span>
-      <h2 style="margin-top:14px; font-size:clamp(1.9rem,3.6vw,2.6rem); color:var(--emerald);">Applying after matric shouldn't be this complicated.</h2>
+      <h2 style="margin-top:14px; font-size:clamp(1.9rem,3.6vw,2.6rem); color:var(--emerald);">Information should not depend on where you come from.</h2>
     </div>
     <div>
-      <p style="font-size:1.06rem; line-height:1.65; color:rgba(11,33,31,0.75);">Different institutions have different requirements, application fees and closing dates. SmartApply brings the information and application assistance together in one simple place, so you always know your next step.</p>
-      <a href="howitworks.html" class="link-arrow">See How It Works
+      <p style="font-size:1.06rem; line-height:1.65; color:rgba(11,33,31,0.75);">Every matriculant deserves access to information about their options after matric. Information is spread across different websites, dates vary and requirements can be confusing. SmartApply brings key application information together so students can spend less time searching and more time preparing for their next step.</p>
+      <p style="margin-top:18px; font-size:1.06rem; line-height:1.65; color:var(--emerald); font-weight:600;">Where you come from should not determine how much you know about your opportunities.</p>
+      <a href="#how" class="link-arrow">See How SmartApply Works
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
+    </div>
+  </div>
+</section>
+
+<section class="section-soft">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">One place to start</span>
+      <h2>What You'll Find on SmartApply</h2>
+      <p>Everything you need to make a more informed next step after matric.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><div class="tag">Institutions</div><h3>Universities, TVET and private colleges</h3><p>Explore different types of institutions in one place.</p></div>
+      <div class="why-card"><div class="tag">Application Dates</div><h3>Know when applications close</h3><p>Plan ahead with closing dates and application status information.</p></div>
+      <div class="why-card"><div class="tag">Application Fees</div><h3>Understand the costs</h3><p>Find out whether an institution charges an application fee.</p></div>
+      <div class="why-card"><div class="tag">Documents</div><h3>Prepare before you apply</h3><p>See the basic documents and information you may need.</p></div>
+      <div class="why-card"><div class="tag">Official Websites</div><h3>Apply through the right platform</h3><p>Access official institution websites and application platforms.</p></div>
+      <div class="why-card"><div class="tag">Application Assistance</div><h3>Get personal help when needed</h3><p>Chat with SmartApply on WhatsApp for paid application assistance.</p></div>
     </div>
   </div>
 </section>
@@ -721,31 +741,56 @@
 <section class="section-champagne" id="how">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Three steps, start to finish</span>
-      <h2>How It Works</h2>
-      <p>No portals to juggle, no guesswork. Just a straightforward path from choosing your institution to submitting your application.</p>
+      <span class="eyebrow">A clearer path forward</span>
+      <h2>How SmartApply Works</h2>
+      <p>Use SmartApply for information first, then choose whether you need personal assistance.</p>
     </div>
     <div class="process-rail">
       <div class="process-card">
         <div class="process-num">01</div>
-        <h3>Choose</h3>
-        <p>Find the universities or colleges you want to apply to, all in one directory.</p>
+        <h3>Explore</h3>
+        <p>Browse universities, TVET colleges and private colleges and discover institutions that may be right for you.</p>
       </div>
       <div class="process-card">
         <div class="process-num">02</div>
-        <h3>Chat</h3>
-        <p>Connect with SmartApply on WhatsApp and tell us where you want to apply.</p>
+        <h3>Check the Information</h3>
+        <p>Find closing dates, application fees, required documents and official application websites.</p>
       </div>
       <div class="process-card">
         <div class="process-num">03</div>
+        <h3>Prepare</h3>
+        <p>Get your documents and information ready before starting your application.</p>
+      </div>
+      <div class="process-card">
+        <div class="process-num">04</div>
         <h3>Apply</h3>
-        <p>We help you through the application process and keep you informed along the way.</p>
+        <p>Use the official institution website to complete your application.</p>
+      </div>
+      <div class="process-card">
+        <div class="process-num">05</div>
+        <h3>Need Help?</h3>
+        <p>Contact SmartApply on WhatsApp for personal application assistance when you need it.</p>
       </div>
     </div>
     <div style="margin-top:44px;">
-      <a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-primary whatsapp-cta">Start Your Application
+      <a href="howitworks.html#assistance" class="btn btn-primary">Need Application Help
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
+    </div>
+  </div>
+</section>
+
+<section class="section-champagne">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">For every next step</span>
+      <h2>Who Is SmartApply For?</h2>
+    </div>
+    <div class="path-grid">
+      <div class="path-card university"><div><div class="path-tag">Matriculants</div><h3>Planning your next step after Grade 12?</h3><p>Start by exploring your options and what each application may require.</p></div></div>
+      <div class="path-card college"><div><div class="path-tag">Parents &amp; Guardians</div><h3>Helping someone make an informed choice?</h3><p>Find useful information to support conversations about higher education.</p></div></div>
+      <div class="path-card university"><div><div class="path-tag">Gap-Year Students</div><h3>Still deciding where to continue?</h3><p>Compare institutions and keep your next step moving forward.</p></div></div>
+      <div class="path-card college"><div><div class="path-tag">Anyone Exploring</div><h3>Looking for a university or college?</h3><p>SmartApply gives you a clearer place to begin.</p></div></div>
     </div>
   </div>
 </section>
@@ -889,7 +934,7 @@
         <a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20select%20the%20Premium%20package" class="btn btn-outline whatsapp-cta" data-package="Premium">Get Started</a>
       </div>
     </div>
-    <a href="pricings.html" class="link-arrow" style="margin-top:36px; display:inline-flex;">View All Packages
+    <a href="howitworks.html#assistance" class="link-arrow" style="margin-top:36px; display:inline-flex;">View Application Assistance Packages
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
     <p class="fee-note">SmartApply service fees are separate from any application fees charged by universities or colleges.</p>
@@ -971,8 +1016,8 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="institutions.html">Universities &amp; Colleges</a></li>
-          <li><a href="howitworks.html">How It Works</a></li>
-          <li><a href="pricings.html">Pricing</a></li>
+          <li><a href="documents.html">Documents</a></li>
+          <li><a href="faq.html">FAQs</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1052,7 +1097,7 @@
 </script>
 
 <script>
-(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="ODMZuG5qcv8tuS54TBbRV";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...args)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(args)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="ODMZuG5qcv8tuS54TBbRV";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
 </body>
 </html>

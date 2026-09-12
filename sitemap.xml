@@ -16,7 +16,12 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.smartapply.co.za/pricings.html</loc>
+    <loc>https://www.smartapply.co.za/documents.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.smartapply.co.za/faq.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

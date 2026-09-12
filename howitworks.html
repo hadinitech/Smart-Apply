@@ -117,16 +117,17 @@
   }
 
   /* ---------- HERO ---------- */
-  .hero{ background:var(--champagne); padding:90px 0 66px; text-align:center; }
-  .hero .wrap{ max-width:760px; }
-  .hero h1{ font-size:clamp(2.3rem, 5vw, 3.6rem); color:var(--emerald); margin-top:18px; }
-  .hero p.lede{ margin:22px auto 0; font-size:1.1rem; max-width:560px; color:rgba(11,33,31,0.75); line-height:1.6; }
-  .hero .btn{ margin-top:32px; }
+  .hero{ background:var(--emerald); padding:90px 0 66px; text-align:left; }
+  .hero .wrap{ max-width:var(--max-w); }
+  .hero .eyebrow{ color:var(--gold); opacity:1; }
+  .hero h1{ font-size:clamp(2.3rem, 5vw, 3.6rem); color:var(--champagne); margin-top:18px; }
+  .hero p.lede{ margin:22px 0 0; font-size:1.1rem; max-width:680px; color:rgba(248,231,201,0.82); line-height:1.6; }
+  .hero .btn{ margin-top:32px; background:var(--champagne); color:var(--emerald); }
   .hero-sub{
     margin-top:22px;
     font-family:'IBM Plex Mono',monospace;
     font-size:0.82rem;
-    color:rgba(11,33,31,0.55);
+    color:rgba(248,231,201,0.7);
     letter-spacing:0.03em;
   }
 
@@ -135,7 +136,7 @@
   .section-champagne{ background:var(--champagne); }
   .section-emerald{ background:var(--emerald); color:var(--champagne); }
 
-  .section-head{ max-width:640px; margin:0 auto 54px; text-align:center; }
+  .section-head{ max-width:720px; margin:0 0 54px; text-align:left; }
   .section-head h2{ font-size:clamp(1.9rem, 3.6vw, 2.6rem); margin-top:14px; color:var(--emerald); }
   .section-emerald .section-head h2{ color:var(--champagne); }
   .section-head p{ margin-top:16px; font-size:1.04rem; color:rgba(11,33,31,0.7); line-height:1.6; }
@@ -215,7 +216,7 @@
   @media (max-width:560px){ .checklist-grid{ grid-template-columns:1fr; } }
 
   .checklist-footer{
-    margin-top:44px; text-align:center;
+    margin-top:44px; text-align:left;
     padding:30px; background:var(--soft-white); border:1px dashed var(--line); border-radius:18px;
   }
   .checklist-footer p{ font-size:1.02rem; color:var(--emerald); font-weight:500; margin-bottom:16px; }
@@ -231,7 +232,7 @@
   .type-card h3{ font-family:'Space Grotesk',sans-serif; font-size:1.2rem; color:var(--emerald); }
   .type-card p{ margin-top:10px; font-size:0.92rem; color:rgba(11,33,31,0.68); line-height:1.55; }
   @media (max-width:860px){ .type-grid{ grid-template-columns:1fr; } }
-  .type-footer{ text-align:center; margin-top:40px; }
+  .type-footer{ text-align:left; margin-top:40px; }
 
   /* ---------- DOES / DOES NOT ---------- */
   .does-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
@@ -270,9 +271,24 @@
   .instead-box svg{ width:22px; height:22px; flex-shrink:0; color:var(--gold); margin-top:2px; }
   .instead-box p{ font-size:1rem; line-height:1.55; font-weight:500; }
 
-  /* ---------- PRICING INTRO ---------- */
-  .pricing-intro{ text-align:center; }
-  .pricing-intro .btn{ margin-top:26px; }
+  /* ---------- APPLICATION ASSISTANCE ---------- */
+  .assistance-intro{ text-align:left; }
+  .assistance-intro > p{ max-width:720px; margin:16px 0 0; color:rgba(11,33,31,0.7); line-height:1.6; }
+  .assistance-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:38px; text-align:left; }
+  .assistance-card{ display:flex; flex-direction:column; background:var(--soft-white); border:1px solid var(--line); border-radius:18px; padding:28px; }
+  .assistance-card.featured{ background:var(--emerald); color:var(--champagne); border-color:var(--emerald); transform:translateY(-10px); }
+  .assistance-card h3{ font-size:1.35rem; color:var(--emerald); }
+  .assistance-card.featured h3{ color:var(--champagne); }
+  .assistance-price{ margin-top:12px; font:700 2.7rem 'Space Grotesk',sans-serif; color:var(--emerald); }
+  .assistance-card.featured .assistance-price{ color:var(--champagne); }
+  .assistance-card .desc{ margin-top:8px; color:rgba(11,33,31,0.7); line-height:1.5; }
+  .assistance-card.featured .desc{ color:rgba(248,231,201,0.76); }
+  .assistance-list{ display:grid; gap:10px; margin:24px 0 28px; list-style:none; color:rgba(11,33,31,0.75); font-size:.9rem; }
+  .assistance-card.featured .assistance-list{ color:rgba(248,231,201,0.82); }
+  .assistance-list li::before{ content:"✓"; color:var(--gold); font-weight:800; margin-right:8px; }
+  .assistance-card .btn{ margin-top:auto; }
+  .assistance-note{ margin:28px auto 0; max-width:800px; padding:18px 20px; border-left:4px solid var(--gold); background:rgba(248,231,201,0.55); text-align:left; color:rgba(11,33,31,0.76); }
+  @media (max-width:900px){ .assistance-grid{ grid-template-columns:1fr; } .assistance-card.featured{ transform:none; } }
 
   /* ---------- FINAL CTA ---------- */
   .final-cta{ text-align:center; padding:110px 0; }
@@ -305,9 +321,9 @@
     <a href="index.html" class="logo" aria-label="SmartApply home"><img src="images/Logo.png" alt="SmartApply logo"></a>
     <div class="nav-links">
       <a href="index.html">Home</a>
-      <a href="institutions.html">Universities &amp; Colleges</a>
+      <a href="institutions.html">Institutions</a>
+      <a href="documents.html">Documents</a>
       <a href="howitworks.html" class="active">How It Works</a>
-      <a href="pricings.html">Pricing</a>
     </div>
     <div class="nav-cta">
       <a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-outline whatsapp-cta">Chat on WhatsApp</a>
@@ -320,77 +336,13 @@
 
 <section class="hero">
   <div class="wrap">
-    <span class="eyebrow">From confusion to confirmation</span>
-    <h1>Applying doesn't have to be complicated.</h1>
-    <p class="lede">From choosing where to apply to getting your application submitted, SmartApply helps you understand the process every step of the way.</p>
-    <a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-primary whatsapp-cta">Start Your Application
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.37 5.07L2 22l5.07-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a7.9 7.9 0 01-4.03-1.1l-.29-.17-2.97.78.79-2.89-.19-.3A7.93 7.93 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>
+    <span class="eyebrow">From confusion to clarity</span>
+    <h1>From Confusion to Clarity</h1>
+    <p class="lede"><strong>Applying after matric doesn't have to be complicated.</strong><br>SmartApply brings universities and colleges, application deadlines, fees, required documents and official application links together in one place, helping you understand what you need and where to apply.</p>
+    <a href="institutions.html" class="btn btn-primary">Explore Institutions
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
     <div class="hero-sub">University applications &nbsp;·&nbsp; TVET colleges &nbsp;·&nbsp; Private colleges</div>
-  </div>
-</section>
-
-<section class="section-soft" id="steps">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Three steps, start to finish</span>
-      <h2>Choose. Chat. Apply.</h2>
-      <p>Here's exactly what happens once you land on SmartApply — no surprises.</p>
-    </div>
-
-    <div class="steps-wrap">
-      <div class="steps-line"></div>
-      <div class="steps-grid">
-
-        <div class="step-card">
-          <div class="step-num-band">01</div>
-          <div class="step-body">
-            <div class="step-eyebrow">Choose</div>
-            <h3>Find where you want to study.</h3>
-            <p class="desc">Explore universities and colleges on SmartApply and decide where you'd like to apply.</p>
-            <ul class="step-list">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Application fees</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Closing dates</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Institution type</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Location</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Available programmes</li>
-            </ul>
-            <a href="institutions.html" class="link-arrow">Explore Institutions
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <div class="step-card">
-          <div class="step-num-band">02</div>
-          <div class="step-body">
-            <div class="step-eyebrow">Chat</div>
-            <h3>Tell us where you want to apply.</h3>
-            <p class="desc">Click the WhatsApp button and speak to SmartApply. We'll explain:</p>
-            <ul class="step-list">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>What information you need</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>Which documents are required</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>What the application process involves</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 11l3 3L22 4"/></svg>What fees apply</li>
-            </ul>
-            <a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="link-arrow whatsapp-cta">Chat on WhatsApp
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <div class="step-card">
-          <div class="step-num-band">03</div>
-          <div class="step-body">
-            <div class="step-eyebrow">Apply</div>
-            <h3>We help you through the application.</h3>
-            <p class="desc">Once you've provided the required information and selected your package, SmartApply assists you with the supported applications. You'll receive confirmation when an application has been submitted.</p>
-            <div class="step-note">Important: SmartApply assists with applications but does not make admission decisions.</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
   </div>
 </section>
 
@@ -535,14 +487,17 @@
   </div>
 </section>
 
-<section class="section-soft pricing-intro">
+<section class="section-soft assistance-intro" id="assistance">
   <div class="wrap">
-    <span class="eyebrow">Support that fits your budget</span>
-    <h2 style="font-size:clamp(1.9rem,3.6vw,2.6rem); margin-top:14px; color:var(--emerald);">Choose the level of help you need.</h2>
-    <p style="margin-top:16px; font-size:1.04rem; color:rgba(11,33,31,0.7); max-width:560px; margin-left:auto; margin-right:auto; line-height:1.6;">Our packages are designed to give students affordable access to application assistance.</p>
-    <a href="pricings.html" class="btn btn-outline">View Packages
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    </a>
+    <span class="eyebrow">Assistance when you need it</span>
+    <h2 style="font-size:clamp(1.9rem,3.6vw,2.6rem); margin-top:14px; color:var(--emerald);">Need help with your application?</h2>
+    <p>Use SmartApply's information to apply yourself through the official institution website. If you prefer personal guidance, application assistance is available through WhatsApp for a service fee.</p>
+    <div class="assistance-grid">
+      <article class="assistance-card"><h3>Starter</h3><div class="assistance-price">R100</div><p class="desc">For students starting their application journey.</p><ul class="assistance-list"><li>Minimum 2 applications</li><li>Application information</li><li>Submission assistance</li><li>Confirmation of submitted applications</li></ul><a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20the%20Starter%20package" class="btn btn-outline whatsapp-cta">Choose Starter</a></article>
+      <article class="assistance-card featured"><h3>Standard</h3><div class="assistance-price">R200</div><p class="desc">For students applying to multiple institutions.</p><ul class="assistance-list"><li>Minimum 5 applications</li><li>Application information</li><li>Document guidance</li><li>Submission assistance</li><li>Application confirmation</li></ul><a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20the%20Standard%20package" class="btn btn-light whatsapp-cta">Choose Standard</a></article>
+      <article class="assistance-card"><h3>Complete</h3><div class="assistance-price">R350</div><p class="desc">For students who want more comprehensive assistance.</p><ul class="assistance-list"><li>Minimum 10 applications</li><li>Document guidance</li><li>Application assistance</li><li>Submission assistance</li><li>Application confirmation</li></ul><a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20the%20Complete%20package" class="btn btn-outline whatsapp-cta">Choose Complete</a></article>
+    </div>
+    <div class="assistance-note"><strong>Important:</strong> Application assistance is a paid service and does not guarantee admission. The institution remains responsible for assessing applications and making admission decisions. Institution application fees are separate.</div>
   </div>
 </section>
 
@@ -569,8 +524,8 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="institutions.html">Universities &amp; Colleges</a></li>
-          <li><a href="howitworks.html">How It Works</a></li>
-          <li><a href="pricings.html">Pricing</a></li>
+          <li><a href="documents.html">Documents</a></li>
+          <li><a href="faq.html">FAQs</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -637,7 +592,7 @@
 </script>
 
 <script>
-(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="ODMZuG5qcv8tuS54TBbRV";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...args)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(args)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="ODMZuG5qcv8tuS54TBbRV";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
 </body>
 </html>
