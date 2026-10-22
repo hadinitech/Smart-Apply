@@ -417,20 +417,17 @@
   @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
   :focus-visible{ outline:2.5px solid var(--gold); outline-offset:3px; }
 </style>
+<link rel="stylesheet" href="design-system.css">
 </head>
-<body>
+<body class="page-institutions">
+<a class="skip-link" href="#main-content">Skip to content</a>
 
 <header>
   <nav class="wrap">
     <a href="index.html" class="logo" aria-label="SmartApply home"><img src="images/Logo.png" alt="SmartApply logo"></a>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="institutions.html" class="active">Institutions</a>
-      <a href="documents.html">Documents</a>
-      <a href="howitworks.html">How It Works</a>
-    </div>
+    <div class="nav-links"><a href="index.html">Home</a><a href="institutions.html" class="active" aria-current="page">Institutions</a><a href="documents.html">Documents</a><a href="howitworks.html">How It Works</a></div>
     <div class="nav-cta">
-      <a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-outline whatsapp-cta">Chat on WhatsApp</a>
+      <a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-outline whatsapp-cta"><svg class="wa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.5L3 20.5l1.4-4.7A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M8 7.5c.2 4 3 6.8 7 8l1.4-2.1-2.4-1.2-1 1c-1.5-.7-2.7-1.9-3.3-3.4l.9-.8-1-2.3Z"/></svg> Chat on WhatsApp</a>
       <button class="burger" aria-label="Open menu" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
@@ -438,7 +435,7 @@
   </nav>
 </header>
 
-<section class="page-header">
+<section class="page-header" id="main-content">
   <div class="wrap">
     <span class="eyebrow">The SmartApply directory</span>
     <h1>Find where you belong.</h1>
@@ -471,7 +468,7 @@
           <option value="all">Province</option>
           <option>Gauteng</option>
           <option>Western Cape</option>
-          <option>KwaZulu-Natal</option>
+          <option>KwaZulu Natal</option>
           <option>Eastern Cape</option>
           <option>Free State</option>
           <option>Limpopo</option>
@@ -512,7 +509,7 @@
         <select id="filterSort">
           <option value="default">Sort: Featured</option>
           <option value="closing">Sort: Closing soonest</option>
-          <option value="name">Sort: Name A–Z</option>
+          <option value="name">Sort: Name A Z</option>
         </select>
       </div>
     </div>
@@ -641,99 +638,13 @@
   </div>
 </div>
 
-<script>
+<script src="institutions-data.js"></script><script>
   const WHATSAPP_LINK = "https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application";
 
-  const institutions = [
-    { name:"University of Cape Town (UCT)", type:"University", province:"Western Cape", fee:100, status:"open", opening:"1 April 2026", closing:"31 July 2026", area:"General", featured:true, site:"https://www.uct.ac.za" },
-    { name:"University of the Witwatersrand (Wits)", type:"University", province:"Gauteng", fee:100, status:"open", opening:"1 March 2026", closing:"30 September 2026", area:"General", featured:true, site:"https://www.wits.ac.za" },
-    { name:"University of Pretoria (UP)", type:"University", province:"Gauteng", fee:300, status:"open", opening:"1 April 2026", closing:"30 June 2026", area:"General", featured:true, site:"https://www.up.ac.za" },
-    { name:"Stellenbosch University", type:"University", province:"Western Cape", fee:100, status:"open", opening:"1 April 2026", closing:"31 July 2026", area:"General", featured:true, site:"https://www.su.ac.za" },
-    { name:"University of the Western Cape (UWC)", type:"University", province:"Western Cape", fee:0, status:"open", opening:"1 April 2026", closing:"30 September 2026", area:"General", featured:true, site:"https://www.uwc.ac.za" },
-    { name:"University of the Free State (UFS)", type:"University", province:"Free State", fee:0, status:"open", opening:"1 April 2026", closing:"30 September 2026", area:"General", featured:true, site:"https://apply.ufs.ac.za" },
-    { name:"North-West University (NWU)", type:"University", province:"North West", fee:null, status:"open", opening:"1 June 2026", closing:"31 August 2026", area:"General", featured:true, site:"https://www.nwu.ac.za" },
-    { name:"University of Johannesburg (UJ)", type:"University", province:"Gauteng", fee:0, status:"open", opening:"1 April 2026", closing:"31 October 2026", area:"General", featured:true, site:"https://www.uj.ac.za" },
-    { name:"University of KwaZulu-Natal (UKZN)", type:"University", province:"KwaZulu-Natal", fee:210, status:"open", opening:"1 March 2026", closing:"30 September 2026", area:"General", featured:true, site:"https://applications.ukzn.ac.za" },
-    { name:"Nelson Mandela University", type:"University", province:"Eastern Cape", fee:null, status:"open", opening:"1 April 2026", closing:"30 September 2026", area:"General", featured:true, site:"https://www.mandela.ac.za" },
-    { name:"Rhodes University", type:"University", province:"Eastern Cape", fee:100, status:"open", opening:"1 April 2026", closing:"30 September 2026", area:"General", featured:false, site:"https://www.ru.ac.za" },
-    { name:"University of Fort Hare (UFH)", type:"University", province:"Eastern Cape", fee:120, status:"open", opening:"1 May 2026", closing:"31 October 2026", area:"General", featured:false, site:"https://www.ufh.ac.za" },
-    { name:"University of Limpopo (UL)", type:"University", province:"Limpopo", fee:200, status:"open", opening:"1 May 2026", closing:"30 September 2026", area:"General", featured:false, site:"https://www.ul.ac.za" },
-    { name:"University of Venda (UNIVEN)", type:"University", province:"Limpopo", fee:0, status:"open", opening:"1 May 2026", closing:"30 September 2026", area:"General", featured:false, site:"https://www.univen.ac.za" },
-    { name:"University of Mpumalanga (UMP)", type:"University", province:"Mpumalanga", fee:200, status:"open", opening:"1 June 2026", closing:"30 November 2026", area:"General", featured:false, site:"https://www.ump.ac.za" },
-    { name:"University of Zululand (UNIZULU)", type:"University", province:"KwaZulu-Natal", fee:null, status:"open", opening:"1 March 2026", closing:"30 September 2026", area:"General", featured:false, site:"https://www.unizulu.ac.za" },
-    { name:"Walter Sisulu University (WSU)", type:"University", province:"Eastern Cape", fee:100, status:"open", opening:"1 June 2026", closing:"31 October 2026", area:"General", featured:false, site:"https://wsu.ac.za" },
-    { name:"Sefako Makgatho Health Sciences University (SMU)", type:"University", province:"Gauteng", fee:null, status:"open", opening:"1 April 2026", closing:"Programme-specific", area:"General", featured:false, site:"https://www.smu.ac.za" },
-    { name:"Sol Plaatje University (SPU)", type:"University", province:"Northern Cape", fee:null, status:"open", opening:"1 April 2026", closing:"30 September 2026", area:"General", featured:false, site:"https://www.spu.ac.za" },
-    { name:"University of South Africa (UNISA)", type:"University", province:"National", fee:160, status:"open", opening:"17 August 2026", closing:"9 October 2026", area:"General", featured:false, site:"https://www.unisa.ac.za/sites/corporate/default/Apply-for-admission" },
-    { name:"Tshwane University of Technology (TUT)", type:"University", province:"Gauteng", fee:240, status:"open", opening:"1 April 2026", closing:"Programme-specific", area:"General", featured:false, site:"https://www.tut.ac.za" },
-    { name:"Cape Peninsula University of Technology (CPUT)", type:"University", province:"Western Cape", fee:0, status:"open", opening:"11 May 2026", closing:"30 September 2026", area:"General", featured:false, site:"https://www.cput.ac.za" },
-    { name:"Durban University of Technology (DUT)", type:"University", province:"KwaZulu-Natal", fee:null, status:"open", opening:"1 March 2026", closing:"30 September 2026", area:"General", featured:false, site:"https://www.dut.ac.za" },
-    { name:"Vaal University of Technology (VUT)", type:"University", province:"Gauteng", fee:110, status:"open", opening:"21 May 2026", closing:"30 October 2026", area:"General", featured:false, site:"https://vut.ac.za" },
-    { name:"Central University of Technology (CUT)", type:"University", province:"Free State", fee:0, status:"open", opening:"1 April 2026", closing:"30 September 2026", area:"General", featured:false, site:"https://www.cut.ac.za" },
-    { name:"Mangosuthu University of Technology (MUT)", type:"University", province:"KwaZulu-Natal", fee:null, status:"open", opening:"1 March 2026", closing:"30 September 2026", area:"General", featured:false, site:"https://www.mut.ac.za" },
-    { name:"Emeris", type:"Private College", province:"Gauteng / Western Cape", fee:500, status:"open", opening:"2027 applications open", closing:"30 October 2026", area:"General", featured:true, site:"https://www.emeris.ac.za" },
-    { name:"Varsity College", type:"Private College", province:"Multiple", fee:null, status:"open", opening:"2027 intake", closing:"Programme-specific", area:"General", featured:true, site:"https://www.varsitycollege.co.za" },
-    { name:"Rosebank College", type:"Private College", province:"Multiple", fee:null, status:"open", opening:"2027 intake", closing:"Programme-specific", area:"General", featured:true, site:"https://www.rosebankcollege.co.za" },
-    { name:"Vega", type:"Private College", province:"Multiple", fee:null, status:"open", opening:"2027 intake", closing:"Programme-specific", area:"General", featured:true, site:"https://www.vegaschool.com" },
-    { name:"IIE MSA", type:"Private College", province:"Gauteng", fee:null, status:"open", opening:"2027 intake", closing:"Programme-specific", area:"General", featured:false, site:"https://www.msa.ac.za" },
-    { name:"Boston City Campus", type:"Private College", province:"Multiple", fee:null, status:"open", opening:"2027 intake", closing:"Programme-specific", area:"General", featured:false, site:"https://www.boston.ac.za" },
-    { name:"Richfield", type:"Private College", province:"Multiple", fee:null, status:"open", opening:"2027 intake", closing:"Programme-specific", area:"General", featured:false, site:"https://www.richfield.ac.za" },
-    { name:"CTU Training Solutions", type:"Private College", province:"Multiple", fee:null, status:"open", opening:"2027 intake", closing:"Programme-specific", area:"General", featured:false, site:"https://www.ctutraining.co.za" },
-    { name:"STADIO Higher Education", type:"Private College", province:"Multiple", fee:null, status:"open", opening:"2027 intake", closing:"Programme-specific", area:"General", featured:false, site:"https://stadio.ac.za" },
-    { name:"Eduvos", type:"Private College", province:"Multiple", fee:null, status:"open", opening:"2027 intake", closing:"Programme-specific", area:"General", featured:false, site:"https://www.eduvos.com" },
-    { name:"AFDA", type:"Private College", province:"Gauteng / Western Cape", fee:null, status:"open", opening:"2027 intake", closing:"Programme-specific", area:"General", featured:false, site:"https://www.afda.co.za" },
-    { name:"Milpark Education", type:"Private College", province:"Online / Multiple", fee:null, status:"open", opening:"2027 intake", closing:"Multiple intakes", area:"General", featured:false, site:"https://www.milpark.ac.za" },
-    { name:"MANCOSA", type:"Private College", province:"Multiple / Online", fee:null, status:"open", opening:"2027 intake", closing:"Programme-specific", area:"General", featured:false, site:"https://www.mancosa.co.za" },
-    { name:"Regent Business School", type:"Private College", province:"Multiple / Online", fee:null, status:"open", opening:"2027 intake", closing:"Programme-specific", area:"General", featured:false, site:"https://www.regent.ac.za" },
-    { name:"Regenesys Education", type:"Private College", province:"Johannesburg / Online", fee:null, status:"open", opening:"2027 intake", closing:"Programme-specific", area:"General", featured:false, site:"https://www.regenesys.net" },
-    { name:"IMM Graduate School", type:"Private College", province:"Online / Gauteng", fee:null, status:"open", opening:"2027 intake", closing:"Programme/intake-specific", area:"General", featured:false, site:"https://imm.ac.za" },
-    { name:"Ekurhuleni East TVET College", type:"TVET College", province:"Gauteng", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Ekurhuleni West TVET College", type:"TVET College", province:"Gauteng", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"South West Gauteng TVET College", type:"TVET College", province:"Gauteng", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Tshwane North TVET College", type:"TVET College", province:"Gauteng", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Tshwane South TVET College", type:"TVET College", province:"Gauteng", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Sedibeng TVET College", type:"TVET College", province:"Gauteng", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Central Johannesburg TVET College", type:"TVET College", province:"Gauteng", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"West Coast TVET College", type:"TVET College", province:"Western Cape", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Northlink TVET College", type:"TVET College", province:"Western Cape", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"False Bay TVET College", type:"TVET College", province:"Western Cape", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"College of Cape Town", type:"TVET College", province:"Western Cape", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"South Cape TVET College", type:"TVET College", province:"Western Cape", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Boland TVET College", type:"TVET College", province:"Western Cape", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Buffalo City TVET College", type:"TVET College", province:"Eastern Cape", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Eastcape Midlands TVET College", type:"TVET College", province:"Eastern Cape", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"King Hintsa TVET College", type:"TVET College", province:"Eastern Cape", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"King Sabata Dalindyebo TVET College", type:"TVET College", province:"Eastern Cape", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Lovedale TVET College", type:"TVET College", province:"Eastern Cape", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Port Elizabeth TVET College", type:"TVET College", province:"Eastern Cape", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Ikhala TVET College", type:"TVET College", province:"Eastern Cape", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Mnambithi TVET College", type:"TVET College", province:"KwaZulu-Natal", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Coastal KZN TVET College", type:"TVET College", province:"KwaZulu-Natal", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Elangeni TVET College", type:"TVET College", province:"KwaZulu-Natal", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Majuba TVET College", type:"TVET College", province:"KwaZulu-Natal", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Thekwini TVET College", type:"TVET College", province:"KwaZulu-Natal", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Umgungundlovu TVET College", type:"TVET College", province:"KwaZulu-Natal", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Mthashana TVET College", type:"TVET College", province:"KwaZulu-Natal", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Umfolozi TVET College", type:"TVET College", province:"KwaZulu-Natal", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Capricorn TVET College", type:"TVET College", province:"Limpopo", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Lephalale TVET College", type:"TVET College", province:"Limpopo", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Letaba TVET College", type:"TVET College", province:"Limpopo", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Mopani South East TVET College", type:"TVET College", province:"Limpopo", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Sekhukhune TVET College", type:"TVET College", province:"Limpopo", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Vhembe TVET College", type:"TVET College", province:"Limpopo", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Waterberg TVET College", type:"TVET College", province:"Limpopo", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Flavius Mareka TVET College", type:"TVET College", province:"Free State", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Maluti TVET College", type:"TVET College", province:"Free State", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Motheo TVET College", type:"TVET College", province:"Free State", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Goldfields TVET College", type:"TVET College", province:"Free State", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Orbit TVET College", type:"TVET College", province:"North West", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Taletso TVET College", type:"TVET College", province:"North West", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Vuselela TVET College", type:"TVET College", province:"North West", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Northern Cape Rural TVET College", type:"TVET College", province:"Northern Cape", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" },
-    { name:"Northern Cape Urban TVET College", type:"TVET College", province:"Northern Cape", fee:0, status:"open", opening:"2027 dates TBC", closing:"TBC", area:"General", featured:false, site:"" }
-  ];
+  const institutions = window.SmartApplyData.institutions.map(item => ({...item}));
 
-  const state = { type:"all", province:"all", fee:"all", status:"all", area:"all", sort:"default", query:"" };
+  const params = new URLSearchParams(location.search);
+  const state = { type:"all", province:"all", fee:"all", status: ["open","closing-soon","closed"].includes(params.get("status")) ? params.get("status") : "all", area:"all", sort: ["name","closing"].includes(params.get("sort")) ? params.get("sort") : "default", query:params.get("q") || "" };
   const pageSize = 25;
   let visibleCount = pageSize;
 
@@ -772,7 +683,7 @@
     if(state.area !== "all" && inst.area !== state.area) return false;
     if(state.query){
       const q = state.query.toLowerCase();
-      if(!inst.name.toLowerCase().includes(q) && !inst.area.toLowerCase().includes(q) && !inst.type.toLowerCase().includes(q)) return false;
+      if(!inst.name.toLowerCase().includes(q) && !inst.area.toLowerCase().includes(q) && !inst.type.toLowerCase().includes(q) && !inst.province.toLowerCase().includes(q)) return false;
     }
     return true;
   }
@@ -914,6 +825,9 @@
     });
   }
 
+  searchInput.value = state.query;
+  document.getElementById("filterStatus").value = state.status;
+  document.getElementById("filterSort").value = state.sort;
   renderFeatured();
   render();
 </script>
@@ -921,5 +835,6 @@
 <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...args)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(args)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="ODMZuG5qcv8tuS54TBbRV";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
+<script src="site-ui.js" defer></script>
 </body>
 </html>

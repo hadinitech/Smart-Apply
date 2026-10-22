@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How It Works — SmartApply</title>
+<title>How It Works SmartApply</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -313,20 +313,17 @@
   @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
   :focus-visible{ outline:2.5px solid var(--gold); outline-offset:3px; }
 </style>
+<link rel="stylesheet" href="design-system.css">
 </head>
-<body>
+<body class="page-howitworks">
+<a class="skip-link" href="#main-content">Skip to content</a>
 
 <header>
   <nav class="wrap">
     <a href="index.html" class="logo" aria-label="SmartApply home"><img src="images/Logo.png" alt="SmartApply logo"></a>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="institutions.html">Institutions</a>
-      <a href="documents.html">Documents</a>
-      <a href="howitworks.html" class="active">How It Works</a>
-    </div>
+    <div class="nav-links"><a href="index.html">Home</a><a href="institutions.html">Institutions</a><a href="documents.html">Documents</a><a href="howitworks.html" class="active" aria-current="page">How It Works</a></div>
     <div class="nav-cta">
-      <a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-outline whatsapp-cta">Chat on WhatsApp</a>
+      <a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-outline whatsapp-cta"><svg class="wa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.5L3 20.5l1.4-4.7A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M8 7.5c.2 4 3 6.8 7 8l1.4-2.1-2.4-1.2-1 1c-1.5-.7-2.7-1.9-3.3-3.4l.9-.8-1-2.3Z"/></svg> Chat on WhatsApp</a>
       <button class="burger" aria-label="Open menu" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
@@ -334,7 +331,7 @@
   </nav>
 </header>
 
-<section class="hero">
+<section class="hero" id="main-content">
   <div class="wrap">
     <span class="eyebrow">From confusion to clarity</span>
     <h1>From Confusion to Clarity</h1>
@@ -346,6 +343,7 @@
   </div>
 </section>
 
+<section class="section-soft"><div class="wrap"><div class="section-head"><span class="eyebrow">Your next chapter, step by step</span><h2>A clearer path to your future.</h2></div><div class="journey"><a href="institutions.html"><span>01 / EXPLORE</span><h3>Find your options <span aria-hidden="true">→</span></h3><p>Discover universities and colleges and compare your choices.</p></a><a href="documents.html"><span>02 / PREPARE</span><h3>Get your documents ready <span aria-hidden="true">→</span></h3><p>Understand the requirements and gather what you need.</p></a><a href="institutions.html"><span>03 / APPLY</span><h3>Find the right channel <span aria-hidden="true">→</span></h3><p>Use official institution portals to submit your application.</p></a><a href="#assistance"><span>04 / GET HELP</span><h3>Take the next step <span aria-hidden="true">→</span></h3><p>Choose personal assistance when you need a little guidance.</p></a></div></div></section>
 <section class="section-champagne">
   <div class="wrap">
     <div class="section-head">
@@ -397,7 +395,7 @@
     <div class="type-grid">
       <div class="type-card">
         <h3>University</h3>
-        <p>For degree and other higher-education programmes.</p>
+        <p>For degree and other higher education programmes.</p>
       </div>
       <div class="type-card">
         <h3>TVET College</h3>
@@ -492,12 +490,8 @@
     <span class="eyebrow">Assistance when you need it</span>
     <h2 style="font-size:clamp(1.9rem,3.6vw,2.6rem); margin-top:14px; color:var(--emerald);">Need help with your application?</h2>
     <p>Use SmartApply's information to apply yourself through the official institution website. If you prefer personal guidance, application assistance is available through WhatsApp for a service fee.</p>
-    <div class="assistance-grid">
-      <article class="assistance-card"><h3>Starter</h3><div class="assistance-price">R100</div><p class="desc">For students starting their application journey.</p><ul class="assistance-list"><li>Minimum 2 applications</li><li>Application information</li><li>Submission assistance</li><li>Confirmation of submitted applications</li></ul><a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20the%20Starter%20package" class="btn btn-outline whatsapp-cta">Choose Starter</a></article>
-      <article class="assistance-card featured"><h3>Standard</h3><div class="assistance-price">R200</div><p class="desc">For students applying to multiple institutions.</p><ul class="assistance-list"><li>Minimum 5 applications</li><li>Application information</li><li>Document guidance</li><li>Submission assistance</li><li>Application confirmation</li></ul><a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20the%20Standard%20package" class="btn btn-light whatsapp-cta">Choose Standard</a></article>
-      <article class="assistance-card"><h3>Complete</h3><div class="assistance-price">R350</div><p class="desc">For students who want more comprehensive assistance.</p><ul class="assistance-list"><li>Minimum 10 applications</li><li>Document guidance</li><li>Application assistance</li><li>Submission assistance</li><li>Application confirmation</li></ul><a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20the%20Complete%20package" class="btn btn-outline whatsapp-cta">Choose Complete</a></article>
-    </div>
-    <div class="assistance-note"><strong>Important:</strong> Application assistance is a paid service and does not guarantee admission. The institution remains responsible for assessing applications and making admission decisions. Institution application fees are separate.</div>
+    <div class="assistance-grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))"><article class="assistance-card featured"><h3>Higher Education Applications</h3><div class="assistance-price">R25 <small style="font-size:1rem">per application</small></div><p class="desc">Optional help completing and submitting your application.</p><ul class="assistance-list"><li>Universities</li><li>TVET colleges</li><li>Private higher education institutions</li><li>Guidance using the information and documents you provide</li></ul><a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%20would%20like%20application%20assistance%20at%20R25%20per%20application." class="btn btn-light">Get Application Help</a></article><article class="assistance-card"><h3>NSFAS Assistance</h3><div class="assistance-price">R50</div><p class="desc">Personal help preparing and completing your NSFAS application.</p><ul class="assistance-list"><li>Understand requirements</li><li>Prepare documents</li><li>Complete and submit your application</li></ul><a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%20would%20like%20NSFAS%20assistance%20for%20R50." class="btn btn-outline">Get NSFAS Help</a></article></div>
+<div class="assistance-note"><strong>Important:</strong> Application assistance is a paid service and does not guarantee admission. The institution remains responsible for assessing applications and making admission decisions. Institution application fees are separate.</div>
   </div>
 </section>
 
@@ -594,5 +588,6 @@
 <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...args)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(args)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="ODMZuG5qcv8tuS54TBbRV";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
+<script src="site-ui.js" defer></script>
 </body>
 </html>

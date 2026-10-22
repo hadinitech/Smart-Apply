@@ -51,18 +51,15 @@
     }
   </style>
   <link rel="stylesheet" href="legal.css">
+<link rel="stylesheet" href="design-system.css">
 </head>
-<body>
+<body class="page-terms-conditions legal-page">
+<a class="skip-link" href="#main-content">Skip to content</a>
   <header>
     <nav class="wrap">
       <a href="index.html" class="logo" aria-label="SmartApply home"><img src="images/Logo.png" alt="SmartApply logo"></a>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="institutions.html">Institutions</a>
-        <a href="documents.html">Documents</a>
-        <a href="howitworks.html">How It Works</a>
-      </div>
-      <div class="nav-cta"><a href="https://wa.me/27608235783" class="btn">Chat on WhatsApp</a><button class="burger" aria-label="Open menu" aria-expanded="false">
+      <div class="nav-links"><a href="index.html">Home</a><a href="institutions.html">Institutions</a><a href="documents.html">Documents</a><a href="howitworks.html">How It Works</a></div>
+      <div class="nav-cta"><a href="https://wa.me/27608235783" class="btn"><svg class="wa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.5L3 20.5l1.4-4.7A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M8 7.5c.2 4 3 6.8 7 8l1.4-2.1-2.4-1.2-1 1c-1.5-.7-2.7-1.9-3.3-3.4l.9-.8-1-2.3Z"/></svg> Chat on WhatsApp</a><button class="burger" aria-label="Open menu" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button></div>
     </nav>
@@ -70,7 +67,7 @@
 
   <section class="legal-hero"><div class="legal-hero-inner"><span class="legal-eyebrow">SmartApply legal</span><h1>Terms &amp; Conditions</h1></div></section>
 
-  <main>
+  <main id="main-content">
     <div class="card">
       <h1 hidden>Terms & Conditions</h1>
       <p>These terms explain the general rules for using SmartApply's service and assistance platform.</p>
@@ -116,5 +113,6 @@
 <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...args)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(args)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="ODMZuG5qcv8tuS54TBbRV";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
+<script src="site-ui.js" defer></script>
 </body>
 </html>

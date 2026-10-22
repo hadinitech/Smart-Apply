@@ -1,0 +1,14 @@
+const assert = require('node:assert/strict');
+const {calculate} = require('../aps-calculator.js');
+const marks = values => Object.fromEntries(values.map((value, index) => ['subject-'+index,value]));
+assert.equal(calculate(marks([80,80,80,80,80,80])).score,42);
+assert.equal(calculate(marks([0,0,0,0,0,0])).score,6);
+assert.equal(calculate(marks([80,70,60,50,40,30])).score,27);
+for(const [percent,points] of [[29,1],[30,2],[39,2],[40,3],[49,3],[50,4],[59,4],[60,5],[69,5],[70,6],[79,6],[80,7],[100,7]])assert.equal(calculate(marks(Array(6).fill(percent))).score,points*6);
+assert.equal(calculate({...marks([80,80,80,80,80,80]),'life-orientation':0}).score,42);
+assert.equal(calculate(marks([30,40,50,60,70,80,90])).score,32);
+assert.throws(()=>calculate(marks([80,80,80,80,80])),/six|6/);
+for(const bad of ['',null,undefined,-1,101,NaN,'abc'])assert.throws(()=>calculate(marks([bad,80,80,80,80,80])),/percentage/);
+const custom={max:60,requiredSubjects:6,excluded:['life-orientation'],bands:[[0,10]]};
+assert.equal(calculate(marks([80,80,80,80,80,80]),custom).score,60);
+console.log('APS tests passed: boundaries, maximum, LO exclusion, validation and custom rule profile.');
