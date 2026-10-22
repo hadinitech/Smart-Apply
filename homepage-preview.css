@@ -1,0 +1,26 @@
+/* Compact university cards only inside the landing-page search preview. */
+.landing-page .sa-directory-preview .sa-featured-institutions {
+  grid-auto-columns:minmax(210px,calc((100% - 24px)/3));gap:12px;
+}
+.landing-page .sa-directory-preview .institution-card {
+  min-height:0;padding:16px;border-radius:18px;
+}
+.landing-page .sa-directory-preview .institution-card-top {margin-bottom:12px}
+.landing-page .sa-directory-preview .institution-building {width:34px;height:34px;border-radius:11px}
+.landing-page .sa-directory-preview .institution-building svg {width:22px;height:22px}
+.landing-page .sa-directory-preview .institution-code {font-size:10px;margin-bottom:6px!important}
+.landing-page .sa-directory-preview .institution-title {font-size:18px;line-height:1.3;margin-bottom:10px}
+.landing-page .sa-directory-preview .institution-location {gap:5px;font-size:11px;margin-bottom:10px!important}
+.landing-page .sa-directory-preview .institution-location svg {width:14px;height:14px}
+.landing-page .sa-directory-preview .institution-type {padding:4px 9px;font-size:10px;margin-bottom:14px}
+.landing-page .sa-directory-preview .institution-facts {gap:12px;margin-bottom:12px}
+.landing-page .sa-directory-preview .institution-facts span {font-size:10px;margin-bottom:4px}
+.landing-page .sa-directory-preview .institution-facts p {font-size:12px;line-height:1.4}
+.landing-page .sa-directory-preview .institution-source {padding-top:12px;font-size:10px}
+.landing-page .sa-directory-preview .inst-actions {padding-top:12px}
+.landing-page .sa-directory-preview .institution-view {gap:8px;font-size:11px;min-height:44px}
+.landing-page .sa-directory-preview .institution-arrow {width:32px;height:32px}
+.landing-page .sa-directory-preview .institution-arrow svg {width:16px;height:16px}
+@media(max-width:600px) {
+  .landing-page .sa-directory-preview .sa-featured-institutions {grid-auto-columns:82%}
+}
