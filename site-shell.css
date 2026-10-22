@@ -1,0 +1,89 @@
+/* Shared landing-page shell. Keep this stylesheet last on every page. */
+body header.site-header, body footer.site-footer {
+  font-family:'DM Sans',sans-serif;line-height:1.45;letter-spacing:normal;
+}
+.site-header *, .site-footer * {box-sizing:border-box}
+body header.site-header {
+  position:relative;top:auto;left:auto;right:auto;width:calc(100% - 64px);
+  max-width:1340px;margin:16px auto 28px;border-radius:99px;z-index:100;
+  background:rgba(250,246,228,.55);border:1px solid rgba(255,255,255,.5);
+  box-shadow:0 10px 36px #092e2920;
+  backdrop-filter:blur(24px) saturate(135%);-webkit-backdrop-filter:blur(24px) saturate(135%);
+}
+body.landing-page header.site-header {position:absolute;top:16px;left:0;right:0;margin:0 auto}
+body header.site-header nav.wrap {
+  display:flex;align-items:center;justify-content:space-between;position:relative;
+  width:100%;max-width:none;height:60px;margin:0;padding:0 14px 0 22px;gap:18px;
+}
+body header.site-header .logo {display:flex;align-items:center;flex-shrink:0;gap:0}
+body header.site-header .logo img {display:block;width:74px;max-width:74px;height:49px;object-fit:contain}
+body header.site-header a {text-decoration:none;color:#003f36}
+body header.site-header .nav-links {
+  display:flex;align-items:center;flex-direction:row;flex-wrap:nowrap;gap:clamp(18px,2vw,32px);
+  position:static;padding:0;border:0;background:none;box-shadow:none;
+}
+body header.site-header .nav-links a {font:600 13px/1.45 'DM Sans',sans-serif;padding:12px 0;white-space:nowrap}
+body header.site-header .nav-links a.active {color:#ae8030}
+body header.site-header .nav-links a:after {display:none}
+body header.site-header .nav-actions {display:flex;align-items:center;gap:16px}
+body header.site-header .btn {
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:40px;
+  padding:9px 18px;border:1px solid rgba(255,255,255,.65);border-radius:999px;
+  background:#fffaf0;color:#073b34!important;font:700 13px/1.4 'DM Sans',sans-serif;white-space:nowrap;
+}
+body header.site-header .wa-icon {display:flex;align-items:center;justify-content:center;color:#24b754;width:22px;height:22px}
+body header.site-header svg {width:22px;height:22px;flex:none}
+body header.site-header .menu {display:none;color:#003f36;cursor:pointer;min-width:44px;min-height:44px;padding:10px;border-radius:12px}
+body footer.site-footer {width:100%;max-width:none;margin:0;border-radius:0;background:#002f29;color:#c7d5c6;padding:48px 0 24px}
+body footer.site-footer .sa-container {width:calc(100% - 96px);max-width:1340px;margin:0 auto}
+body footer.site-footer .sa-footer-main {display:grid;grid-template-columns:1.5fr repeat(4,1fr) .8fr;gap:34px;padding-bottom:38px}
+body footer.site-footer .logo {display:flex;align-items:center;gap:0}
+body footer.site-footer .logo img {display:block;width:144px!important;max-width:144px;height:96px;object-fit:contain;background:none;padding:0;border-radius:0;filter:none!important}
+body footer.site-footer p {margin:0}
+body footer.site-footer .sa-footer-brand p {font-size:16px;line-height:1.45;margin-top:20px;max-width:230px;color:#e0e8d8}
+body footer.site-footer h3 {font:500 16px/1.45 'DM Sans',sans-serif;letter-spacing:0;color:#ead18f;margin:0 0 14px}
+body footer.site-footer ul {list-style:none;padding:0;margin:0;display:grid;gap:7px}
+body footer.site-footer li {margin:0;padding:0}
+body footer.site-footer a {font-size:14px;color:#d7e1d2;text-decoration:none}
+body footer.site-footer a:hover {color:#f0d27e}
+body footer.site-footer .sa-social {display:flex;gap:14px;align-items:flex-start}
+body footer.site-footer .sa-social a {display:grid;place-items:center;width:44px;height:44px;color:#e0c278}
+body footer.site-footer .sa-social svg {width:22px;height:22px;flex:none}
+body footer.site-footer .sa-footer-bottom {display:flex;gap:50px;justify-content:space-between;border-top:1px solid #e3edcd33;padding-top:24px;font-size:13px;color:#c7d5c6}
+body footer.site-footer .sa-footer-bottom p {max-width:730px;font-size:13px;line-height:1.6;text-align:right;color:inherit}
+@media(max-width:1200px) {
+  body header.site-header .nav-links {gap:16px}
+  body footer.site-footer .sa-footer-main {gap:22px;grid-template-columns:1.5fr repeat(4,1fr)}
+  body footer.site-footer .sa-social {grid-column:1/-1;justify-content:flex-end;margin-top:-15px}
+}
+@media(max-width:900px) {
+  body header.site-header {border-radius:40px}
+  body header.site-header .nav-links {display:none;position:absolute;top:70px;left:0;right:0;flex-direction:column;align-items:stretch;gap:5px;background:#fbf6e8;border:1px solid rgba(1,62,59,.15);border-radius:24px;padding:18px 24px;box-shadow:var(--shadow-glass)}
+  body header.site-header .nav-links.open {display:flex}
+  body header.site-header .nav-links a {font-size:16px}
+  body header.site-header .nav-actions>.btn {display:none}
+  body header.site-header .menu {display:grid;place-items:center;border:0;background:none}
+  body footer.site-footer .sa-footer-main {grid-template-columns:repeat(4,1fr);gap:30px}
+  body footer.site-footer .sa-footer-brand {grid-column:1/-1;display:flex;align-items:center;justify-content:space-between}
+  body footer.site-footer .sa-footer-brand p {margin-top:0}
+  body footer.site-footer .sa-social {margin:0}
+  body footer.site-footer .sa-footer-bottom {gap:24px}
+  body footer.site-footer .sa-footer-bottom p {max-width:450px;font-size:12px}
+}
+@media(max-width:600px) {
+  body header.site-header {width:calc(100% - 28px);margin-top:12px}
+  body.landing-page header.site-header {top:12px;margin-top:0}
+  body header.site-header nav.wrap {height:54px;padding:0 14px}
+  body header.site-header .logo img {width:68px;max-width:68px;height:45px}
+  body header.site-header .nav-links {top:64px}
+  body footer.site-footer {padding:38px 0 22px}
+  body footer.site-footer .sa-container {width:calc(100% - 40px)}
+  body footer.site-footer .sa-footer-main {grid-template-columns:1fr 1fr;gap:30px 22px;padding-bottom:26px}
+  body footer.site-footer .sa-footer-brand {display:block}
+  body footer.site-footer .sa-footer-brand p {font-size:15px;margin-top:16px;max-width:none}
+  body footer.site-footer ul {gap:10px}
+  body footer.site-footer .sa-social {grid-column:1/-1;justify-content:flex-start;gap:8px}
+  body footer.site-footer .sa-footer-bottom {flex-direction:column;gap:18px;font-size:12px;padding-top:22px}
+  body footer.site-footer .sa-footer-bottom p {text-align:left;max-width:none;font-size:11px}
+}
+@supports not (backdrop-filter:blur(1px)) {body header.site-header {background:#f6f0e2}}

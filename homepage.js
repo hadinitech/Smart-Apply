@@ -4,29 +4,12 @@
   const preview = document.getElementById('homepage-institutions');
   const search = document.getElementById('institution-search');
   const selectedNames = ['University of Johannesburg (UJ)', 'Tshwane University of Technology (TUT)', 'Rosebank College'];
-  const photos = ['images/campus-hero.jpg', 'images/student-aps.jpg', 'images/campus-hero.jpg'];
-  const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>';
   function renderInstitutions(query = '') {
     const q = query.trim().toLowerCase();
     const matches = q ? data.institutions.filter(item => `${item.name} ${item.province} ${item.type} ${item.area}`.toLowerCase().includes(q)).slice(0, 3) : selectedNames.map(name => data.institutions.find(item => item.name === name)).filter(Boolean);
     preview.replaceChildren();
-    matches.forEach((item, index) => {
-      const link = `institutions.html?q=${encodeURIComponent(item.name)}`;
-      const article = document.createElement('article');
-      article.className = 'sa-institution';
-      const state = data.applicationState(item);
-      const monogram = item.name.includes('(UJ)') ? 'UJ' : item.name.includes('(TUT)') ? 'TUT' : item.name === 'Rosebank College' ? 'RC' : item.name.split(' ').filter(word => word.length > 3).slice(0, 2).map(word => word[0]).join('');
-      // All content comes from the same structured local dataset as the directory.
-      article.innerHTML = `<img class="sa-institution-photo" src="${photos[index]}" alt="" width="474" height="474" loading="lazy"><span class="sa-institution-monogram" aria-hidden="true"></span><div class="sa-institution-content"><h3></h3><p class="sa-institution-meta"></p><div class="sa-institution-bottom"><p></p><a class="sa-circle-link">${arrow}</a></div></div>`;
-      article.querySelector('.sa-institution-monogram').textContent = monogram;
-      article.querySelector('h3').textContent = item.name.replace(/ \((UJ|TUT)\)$/, '');
-      article.querySelector('.sa-institution-meta').textContent = `${item.type} · ${item.province}`;
-      const facts = article.querySelector('.sa-institution-bottom p');
-      facts.append(document.createTextNode(`Applications: ${state.label}`), document.createElement('br'), document.createTextNode(`Closes: ${item.closing}`));
-      const button = article.querySelector('a');
-      button.href = link;
-      button.setAttribute('aria-label', `View ${item.name}`);
-      preview.append(article);
+    matches.forEach(item => {
+      preview.insertAdjacentHTML('beforeend', SmartApplyCards.render(item, {className:'sa-institution'}));
     });
     if (!matches.length) {
       const empty = document.createElement('p');

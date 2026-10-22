@@ -418,22 +418,11 @@
   :focus-visible{ outline:2.5px solid var(--gold); outline-offset:3px; }
 </style>
 <link rel="stylesheet" href="design-system.css">
-</head>
+<link rel="stylesheet" href="site-shell.css"><link rel="stylesheet" href="institution-cards.css"><link rel="stylesheet" href="institution-search.css"><link rel="stylesheet" href="institution-modal.css"></head>
 <body class="page-institutions">
 <a class="skip-link" href="#main-content">Skip to content</a>
 
-<header>
-  <nav class="wrap">
-    <a href="index.html" class="logo" aria-label="SmartApply home"><img src="images/Logo.png" alt="SmartApply logo"></a>
-    <div class="nav-links"><a href="index.html">Home</a><a href="institutions.html" class="active" aria-current="page">Institutions</a><a href="documents.html">Documents</a><a href="howitworks.html">How It Works</a></div>
-    <div class="nav-cta">
-      <a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-outline whatsapp-cta"><svg class="wa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.5L3 20.5l1.4-4.7A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M8 7.5c.2 4 3 6.8 7 8l1.4-2.1-2.4-1.2-1 1c-1.5-.7-2.7-1.9-3.3-3.4l.9-.8-1-2.3Z"/></svg> Chat on WhatsApp</a>
-      <button class="burger" aria-label="Open menu" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-    </div>
-  </nav>
-</header>
+<header class="site-header"><nav class="wrap" aria-label="Main navigation"><a href="index.html" class="logo" aria-label="SmartApply home"><img src="images/Logo.png" width="216" height="72" alt="SmartApply SA"></a><div class="nav-links"><a href="index.html">Home</a><a href="institutions.html" class="active" aria-current="page">Institutions</a><a href="funding.html">Funding</a><a href="nsfas.html">NSFAS</a><a href="howitworks.html">How It Works</a></div><div class="nav-actions"><a class="btn" href="https://wa.me/27608235783?text=Hey%20SmartApply!%20I%20could%20use%20a%20hand%20with%20my%20application.%20Can%20you%20help%20me%20get%20started%3F" target="_blank" rel="noopener"><span class="wa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.6a9 9 0 0 1-13.3 8L3 21l1.4-4.7A9 9 0 1 1 21 11.6Z"/><path d="M8 7.5c.2 4 3 6.8 7 8l1.4-2.1-2.4-1.2-1 1c-1.5-.7-2.7-1.9-3.3-3.4l.9-.8-1-2.3Z"/></svg></span>Chat on WhatsApp</a><button class="menu" type="button" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></nav></header>
 
 <section class="page-header" id="main-content">
   <div class="wrap">
@@ -448,11 +437,11 @@
 
 <section class="search-section">
   <div class="wrap">
-    <div class="search-label">What are you looking for?</div>
+    <div class="finder-heading"><div><span class="finder-kicker">Institution finder</span><label class="search-label" for="searchInput">What are you looking for?</label></div><p class="finder-caption">Find the right place for your next chapter.</p></div>
     <div class="search-bar">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       <input type="text" id="searchInput" placeholder="Search universities, colleges or courses...">
-      <button class="btn btn-primary" id="searchBtn">Search</button>
+      <button class="btn btn-primary" id="searchBtn">Search<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
     </div>
 
     <div class="filter-pills" id="typePills">
@@ -464,8 +453,8 @@
 
     <div class="filter-row">
       <div class="filter-select">
-        <select id="filterProvince">
-          <option value="all">Province</option>
+        <label class="finder-filter-label" for="filterProvince">Province</label><select id="filterProvince">
+          <option value="all">All provinces</option>
           <option>Gauteng</option>
           <option>Western Cape</option>
           <option>KwaZulu Natal</option>
@@ -485,46 +474,36 @@
         </select>
       </div>
       <div class="filter-select">
-        <select id="filterFee">
-          <option value="all">Application fee</option>
+        <label class="finder-filter-label" for="filterFee">Application fee</label><select id="filterFee">
+          <option value="all">Any application fee</option>
           <option value="free">Free</option>
           <option value="paid">Paid</option>
         </select>
       </div>
       <div class="filter-select">
-        <select id="filterStatus">
-          <option value="all">Application status</option>
+        <label class="finder-filter-label" for="filterStatus">Applications</label><select id="filterStatus">
+          <option value="all">Any status</option>
           <option value="open">Open</option>
           <option value="closing-soon">Closing soon</option>
           <option value="closed">Closed</option>
         </select>
       </div>
       <div class="filter-select">
-        <select id="filterArea">
-          <option value="all">Study area</option>
+        <label class="finder-filter-label" for="filterArea">Study area</label><select id="filterArea">
+          <option value="all">All study areas</option>
           <option>General</option>
         </select>
       </div>
       <div class="filter-select">
-        <select id="filterSort">
-          <option value="default">Sort: Featured</option>
+        <label class="finder-filter-label" for="filterSort">Sort by</label><select id="filterSort">
+          <option value="default">Recommended</option>
           <option value="closing">Sort: Closing soonest</option>
           <option value="name">Sort: Name A Z</option>
         </select>
       </div>
     </div>
 
-    <div class="results-meta" id="resultsMeta">Showing all institutions</div>
-  </div>
-</section>
-
-<section class="featured-section">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow dark">Trending with students</span>
-      <h2>Popular right now</h2>
-    </div>
-    <div class="featured-scroll" id="featuredScroll"></div>
+    <div class="results-meta" id="resultsMeta" role="status" aria-live="polite">Showing all institutions</div>
   </div>
 </section>
 
@@ -554,50 +533,14 @@
         <h3>Need help applying?</h3>
         <p>Not sure where to start? SmartApply can help you through the application process, step by step.</p>
       </div>
-      <a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-light whatsapp-cta">Chat with SmartApply on WhatsApp
+      <a href="https://wa.me/27608235783?text=Hey%20SmartApply!%20I%20could%20use%20a%20hand%20with%20my%20application.%20Can%20you%20help%20me%20get%20started%3F" class="btn btn-light whatsapp-cta">Chat with SmartApply on WhatsApp
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.37 5.07L2 22l5.07-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a7.9 7.9 0 01-4.03-1.1l-.29-.17-2.97.78.79-2.89-.19-.3A7.93 7.93 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>
       </a>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="wrap">
-    <div class="footer-top">
-      <div>
-        <a href="index.html" class="logo" aria-label="SmartApply home"><img src="images/Logo.png" alt="SmartApply logo" style="height:42px; width:auto; display:block;"></a>
-        <p>Your application. Your future. Made simple.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Explore</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="institutions.html">Universities &amp; Colleges</a></li>
-          <li><a href="documents.html">Documents</a></li>
-          <li><a href="faq.html">FAQs</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="privacy-policy.html">Privacy Policy</a></li>
-          <li><a href="popia-notice.html">POPIA Notice</a></li>
-          <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="whatsapp-cta">WhatsApp</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 SmartApply. All rights reserved.</span>
-      <span>Designed by <a href="https://www.hadiniholdings.co.za" target="_blank" rel="noopener" style="color: #C9A24B;">Hadini Holdodings</a></span>
-    </div>
-  </div>
-</footer>
+<footer class="site-footer"><div class="sa-container"><div class="sa-footer-main"><div class="sa-footer-brand"><a class="logo" href="index.html"><img src="images/Glossy SmartApply Graduation Emblem.png" width="1536" height="1024" alt="SmartApply SA"></a><p>Your next step starts here.</p></div><div><h3>Explore</h3><ul><li><a href="institutions.html">Institutions</a></li><li><a href="funding.html">Funding</a></li><li><a href="nsfas.html">NSFAS</a></li></ul></div><div><h3>SmartApply</h3><ul><li><a href="howitworks.html">How It Works</a></li><li><a href="index.html#assistance">Application Help</a></li><li><a href="howitworks.html">About</a></li><li><a href="https://wa.me/27608235783?text=Hey%20SmartApply!%20I%27d%20like%20some%20help%20applying%20to%20a%20university%20or%20college.%20Where%20do%20we%20start%3F">Contact</a></li></ul></div><div><h3>Support</h3><ul><li><a href="https://wa.me/27608235783?text=Hey%20SmartApply!%20I%20could%20use%20a%20hand%20with%20my%20application.%20Can%20you%20help%20me%20get%20started%3F">WhatsApp</a></li><li><a href="faq.html">FAQs</a></li><li><a href="https://wa.me/27608235783?text=Hey%20SmartApply!%20I%27d%20like%20some%20help%20applying%20to%20a%20university%20or%20college.%20Where%20do%20we%20start%3F">Application Help</a></li><li><a href="https://wa.me/27608235783?text=Hey%20SmartApply!%20I%27d%20like%20some%20help%20with%20my%20NSFAS%20application.%20What%20do%20I%20need%20to%20get%20started%3F">NSFAS Help</a></li></ul></div><div><h3>Legal</h3><ul><li><a href="terms-conditions.html">Terms &amp; Conditions</a></li><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="popia-notice.html">POPIA Notice</a></li></ul></div><div class="sa-social"><a href="https://wa.me/27608235783?text=Hey%20SmartApply!%20I%20could%20use%20a%20hand%20with%20my%20application.%20Can%20you%20help%20me%20get%20started%3F" aria-label="SmartApply on WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.6a9 9 0 0 1-13.3 8L3 21l1.4-4.7A9 9 0 1 1 21 11.6Z"/><path d="M8 7.5c.2 4 3 6.8 7 8l1.4-2.1-2.4-1.2-1 1c-1.5-.7-2.7-1.9-3.3-3.4l.9-.8-1-2.3Z"/></svg></a></div></div><div class="sa-footer-bottom"><span>© 2026 SmartApply. All rights reserved.</span><span class="developer-credit">Developed by <a href="https://hadiniholdings.co.za" target="_blank" rel="noopener">Hadini Holdings</a></span></div></div></footer>
 
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
@@ -631,15 +574,15 @@
         <p id="modalHowTo">Applications are submitted through the institution's official application system. SmartApply can guide you through each step and help you get everything ready before you submit.</p>
       </div>
       <div class="modal-actions">
-        <a href="https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application" class="btn btn-primary whatsapp-cta">Apply with SmartApply</a>
+        <a href="https://wa.me/27608235783?text=Hey%20SmartApply!%20I%20could%20use%20a%20hand%20with%20my%20application.%20Can%20you%20help%20me%20get%20started%3F" class="btn btn-primary whatsapp-cta">Apply with SmartApply</a>
         <a href="https://www.example.com" class="btn btn-outline" id="modalWebsite" target="_blank" rel="noopener">Visit Institution Website</a>
       </div>
     </div>
   </div>
 </div>
 
-<script src="institutions-data.js"></script><script>
-  const WHATSAPP_LINK = "https://wa.me/27608235783?text=Hi%20SmartApply%2C%20I%27d%20like%20to%20start%20my%20application";
+<script src="institutions-data.js"></script><script src="institution-cards.js"></script><script>
+  const WHATSAPP_LINK = "https://wa.me/27608235783?text=Hey%20SmartApply!%20I%20could%20use%20a%20hand%20with%20my%20application.%20Can%20you%20help%20me%20get%20started%3F";
 
   const institutions = window.SmartApplyData.institutions.map(item => ({...item}));
 
@@ -699,49 +642,10 @@
   }
 
   function cardHTML(inst, idx){
-    const status = currentStatus(inst);
-    return `
-      <div class="inst-card">
-        <div class="inst-top">
-          <div class="inst-id">
-            <div class="inst-logo">${initials(inst.name)}</div>
-            <div>
-              <div class="inst-name">${inst.name}</div>
-              <div class="inst-meta">${inst.type} · ${inst.province}</div>
-            </div>
-          </div>
-          <span class="status ${status}">${statusLabel(status)}</span>
-        </div>
-        <div class="inst-divider"></div>
-        <div class="inst-facts">
-          <div class="fact"><div class="lbl">App. Fee</div><div class="val">${feeLabel(inst.fee)}</div></div>
-          <div class="fact"><div class="lbl">Closes</div><div class="val">${inst.closing}</div></div>
-        </div>
-        <div class="inst-actions">
-          <button class="btn btn-outline" onclick="openModal(${idx})">View Details</button>
-          <a href="${WHATSAPP_LINK}" target="_blank" rel="noopener" class="btn btn-primary">Apply</a>
-        </div>
-      </div>`;
+    return SmartApplyCards.render(inst, {className:'inst-card', index:idx});
   }
 
-  function featCardHTML(inst){
-    const idx = institutions.indexOf(inst);
-    const status = currentStatus(inst);
-    return `
-      <div class="feat-card">
-        <div class="feat-logo">${initials(inst.name)}</div>
-        <h4>${inst.name}</h4>
-        <div class="meta">${inst.type} · ${inst.province}</div>
-        <span class="status ${status}">${statusLabel(status)}</span>
-        <div class="fee-line">${feeLabel(inst.fee)} · Closes ${inst.closing}</div>
-        <div class="inst-actions">
-          <button class="btn btn-outline btn-sm" onclick="openModal(${idx})" type="button">View Details</button>
-          <a href="${WHATSAPP_LINK}" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Apply</a>
-        </div>
-      </div>`;
-  }
-
-  function render(){
+function render(){
     const filtered = sortList(institutions.filter(matches));
     const visible = filtered.slice(0, visibleCount);
     const grid = document.getElementById("instGrid");
@@ -759,12 +663,7 @@
     render();
   }
 
-  function renderFeatured(){
-    const featured = institutions.filter(i => i.featured);
-    document.getElementById("featuredScroll").innerHTML = featured.map(featCardHTML).join("");
-  }
-
-  // Filter pills
+// Filter pills
   document.querySelectorAll("#typePills .pill").forEach(pill => {
     pill.addEventListener("click", () => {
       document.querySelectorAll("#typePills .pill").forEach(p => p.classList.remove("active"));
@@ -828,13 +727,10 @@
   searchInput.value = state.query;
   document.getElementById("filterStatus").value = state.status;
   document.getElementById("filterSort").value = state.sort;
-  renderFeatured();
   render();
 </script>
 
-<script>
-(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...args)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(args)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="ODMZuG5qcv8tuS54TBbRV";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
-</script>
+
 <script src="site-ui.js" defer></script>
-</body>
+<script src="chatbot.js" defer></script></body>
 </html>

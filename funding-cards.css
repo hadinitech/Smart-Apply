@@ -1,0 +1,21 @@
+/* Funding uses the same card surface, icon tile and action as institutions. */
+body .institution-card.funding-card {min-height:300px;padding:22px}
+body .funding-card .institution-building {width:44px;height:44px;border-radius:14px}
+body .funding-card .institution-building svg {width:25px;height:25px}
+body .funding-card .institution-card-top {margin-bottom:14px}
+body .funding-card .number {padding:0;margin:0 0 8px;font:400 11px/1.5 'DM Sans',sans-serif;letter-spacing:.12em;color:#b6c9b7}
+body .funding-card .institution-title {font-size:24px;margin-bottom:10px}
+body .funding-card>p {color:#b9cbbf;font-size:13px;line-height:1.6;margin-bottom:16px}
+body .funding-card .funding-action {margin-top:auto;padding-top:14px;border-top:1px solid #c5ddc522}
+body .funding-card .institution-view {gap:14px;font-size:13px}
+body .funding-card .institution-view>span:first-child {max-width:calc(100% - 60px)}
+body .funding-card .funding-kind {align-self:flex-start;padding:4px 10px;margin:0 0 10px;border:1px solid #bfd7bd26;border-radius:99px;background:#cce4c40a;color:#c5d8c5;font-size:12px}
+body .funding-card .funding-eligibility {padding:12px 0;border-top:1px solid #c5ddc522;color:#b9cbbf;font-size:13px;line-height:1.6}
+body .funding-card .funding-eligibility strong {display:block;margin-bottom:6px;color:#d4d7a1;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase}
+.funding-directory-heading {display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.funding-directory-heading h2 {color:#193e34;font-size:clamp(25px,3vw,36px)}
+.funding-directory-heading p {font-size:13px;color:#778575}
+@media(max-width:600px) {
+  body .institution-card.funding-card {min-height:0;padding:20px}
+  body .funding-card .institution-title {font-size:23px}
+}

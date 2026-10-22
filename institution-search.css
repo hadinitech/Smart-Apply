@@ -1,0 +1,55 @@
+/* A quiet ivory search panel with forest accents and restrained brass details. */
+.page-institutions .search-section {padding-top:32px;background:transparent}
+.page-institutions .search-section>.wrap {
+  position:relative;overflow:hidden;padding:32px 36px 24px;
+  border:1px solid #1c403515;border-radius:24px;
+  background:linear-gradient(115deg,#fffdf8,#f7f4eb);
+  box-shadow:0 14px 48px #183c3008,inset 0 1px 0 #ffffff;
+  backdrop-filter:none;
+}
+.page-institutions .search-section>.wrap:before {
+  content:'';position:absolute;top:0;left:36px;width:48px;height:2px;background:#b79a5b;
+}
+.finder-heading {display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:24px}
+.finder-kicker {display:block;margin-bottom:8px;color:#927944;font:600 10px/1.5 'DM Sans',sans-serif;letter-spacing:.19em;text-transform:uppercase}
+.page-institutions .search-label {display:block;margin:0;color:#183e35;font:600 clamp(21px,2vw,28px)/1.25 'Manrope',sans-serif;letter-spacing:-.045em}
+.finder-caption {max-width:245px;color:#7c8479;font-size:13px;line-height:1.6;text-align:right}
+.page-institutions .search-bar {display:flex;flex-wrap:nowrap;gap:14px;padding:7px 7px 7px 20px;border:1px solid #234e3826;border-radius:16px;background:#fffefa;box-shadow:0 3px 9px #173c2c03;transition:border-color .2s,box-shadow .2s}
+.page-institutions .search-bar:focus-within {border-color:#8f9d78;box-shadow:0 0 0 3px #a0ac7c15}
+.page-institutions .search-bar>svg {width:19px;height:19px;color:#6f8274;opacity:1}
+.page-institutions .search-bar input {width:0;min-width:0;min-height:46px;padding:10px 0;border:0;border-radius:0;background:transparent;font:400 14px/1.5 'DM Sans',sans-serif;color:#183e35}
+.page-institutions .search-bar input::placeholder {color:#8e978b}
+.page-institutions .search-bar .btn {display:flex;gap:16px;min-height:46px;margin:0;padding:12px 22px;border:1px solid #193e34;border-radius:11px;background:#193e34;color:#f6f2e5;font:500 13px/1.5 'DM Sans',sans-serif;box-shadow:0 3px 7px #173a3010}
+.page-institutions .search-bar .btn:hover {background:#285346;transform:none}
+.page-institutions .search-bar .btn svg {width:16px;height:16px;color:#d3c391;opacity:1}
+.page-institutions .filter-pills {gap:24px;margin-top:24px;border-bottom:1px solid #25463117;flex-wrap:wrap}
+.page-institutions .pill {position:relative;min-height:44px;padding:0 0 13px;border:0;border-radius:0;background:none;color:#7a8478;font:500 13px/1.4 'DM Sans',sans-serif}
+.page-institutions .pill:hover {background:none;color:#193e34}
+.page-institutions .pill.active {background:none;color:#193e34}
+.page-institutions .pill.active:after {content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:#254c3e;border-radius:2px}
+.page-institutions .filter-row {grid-template-columns:repeat(4,minmax(0,1fr)) minmax(0,1.15fr);gap:18px;margin-top:22px}
+.page-institutions .filter-select {min-width:0}
+.finder-filter-label {display:block;margin-bottom:7px;color:#7d8476;font:500 10px/1.4 'DM Sans',sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.page-institutions .filter-select select {min-height:44px;padding:11px 30px 11px 12px;border:1px solid #254d351c;border-radius:9px;background:#fffdf8;color:#284b3d;font:400 12px/1.5 'DM Sans',sans-serif;cursor:pointer;transition:border-color .2s}
+.page-institutions .filter-select select:hover {border-color:#a6ad94}
+.page-institutions .filter-select:after {width:6px;height:6px;right:13px;top:auto;bottom:18px;border-color:#849174;transform:rotate(45deg)}
+.page-institutions .results-meta {display:flex;align-items:center;gap:8px;margin-top:22px;padding-top:18px;border-top:1px solid #25463112;color:#7d877b;font:400 12px/1.5 'DM Sans',sans-serif;letter-spacing:0}
+.page-institutions .results-meta:before {content:'';width:5px;height:5px;flex:none;border-radius:50%;background:#a59464}
+.page-institutions .search-section button:focus-visible,.page-institutions .filter-select select:focus-visible {outline:2px solid #a59464;outline-offset:4px}
+@media(max-width:1000px) {
+  .page-institutions .filter-row {grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:600px) {
+  .page-institutions .search-section>.wrap {padding:24px 20px 20px;border-radius:20px}
+  .page-institutions .search-section>.wrap:before {left:20px}
+  .finder-heading {margin-bottom:20px}
+  .finder-caption {display:none}
+  .page-institutions .search-bar {gap:8px;padding-left:12px;border-radius:12px}
+  .page-institutions .search-bar input {font-size:12px}
+  .page-institutions .search-bar .btn {width:auto;gap:0;padding:10px 14px;border-radius:8px}
+  .page-institutions .search-bar .btn svg {display:none}
+  .page-institutions .filter-pills {gap:18px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;margin-top:20px}
+  .page-institutions .pill {flex:none;font-size:12px;white-space:nowrap}
+  .page-institutions .filter-row {grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 12px;margin-top:18px}
+  .page-institutions .filter-select:last-child {grid-column:1/-1}
+}

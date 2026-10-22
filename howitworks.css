@@ -1,0 +1,64 @@
+/* A short application journey on layers of forest glass. */
+body.page-howitworks {margin:0;background:#102f28;color:#edf3e9;font-family:'DM Sans',sans-serif;line-height:1.6}
+.page-howitworks * {box-sizing:border-box}
+.page-howitworks a {text-decoration:none}
+.page-howitworks .hiw-main {
+  position:relative;isolation:isolate;padding:40px 0 64px;
+  background:radial-gradient(ellipse at 5% 10%,#8caa7640,transparent 50%),radial-gradient(ellipse at 95% 70%,#658f7133,transparent 55%),#102f28;
+}
+.page-howitworks .hiw-main:before {content:'';position:absolute;inset:0;z-index:-1;opacity:.12;background:linear-gradient(#102f2810,#102f28 90%),url('images/campus-hero.jpg') center top/cover;pointer-events:none}
+.hiw-container {width:calc(100% - 96px);max-width:1240px;margin:auto}
+.hiw-intro {max-width:680px;margin:0 auto 40px;text-align:center}
+.hiw-eyebrow {display:block;margin:0 0 14px;color:#d2cd9a;font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase}
+.hiw-intro h1 {margin:0;color:#f3f5e9;font:600 clamp(36px,4.5vw,60px)/1.1 'Manrope',sans-serif;letter-spacing:-.05em}
+.hiw-intro p {max-width:490px;margin:20px auto 0;color:#c5d6c6;font-size:16px;line-height:1.7}
+.hiw-steps {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:0;padding:0;list-style:none}
+.hiw-glass {border:1px solid #e0edcc30;border-radius:24px;background:linear-gradient(135deg,#e4edd51c,#b0c9a708 65%);box-shadow:inset 0 1px 0 #ffffff18,0 18px 50px #061f2014;backdrop-filter:blur(22px) saturate(125%);-webkit-backdrop-filter:blur(22px) saturate(125%)}
+.hiw-step {position:relative;display:flex;flex-direction:column;padding:26px;transition:border-color .2s,background .2s}
+.hiw-step:hover {border-color:#e0edcc55;background-color:#d6eacb08}
+.hiw-step-top {display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+.hiw-icon {display:grid;place-items:center;width:48px;height:48px;background:#dbe9c40d;border:1px solid #dbe9c433;border-radius:16px;color:#d1dfa1}
+.hiw-icon svg {width:24px;height:24px}
+.hiw-step-number {color:#b4c6ad;font-size:11px;letter-spacing:.14em}
+.hiw-step h2 {margin:0 0 12px;font:600 24px/1.25 'Manrope',sans-serif;letter-spacing:-.04em;color:#f0f4e8}
+.hiw-step p {margin:0 0 24px;color:#c5d6c6;font-size:14px;line-height:1.7}
+.hiw-link {display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:auto;color:#d1dfa1;font-size:13px;font-weight:500}
+.hiw-link:after {content:'';position:absolute;inset:0;border-radius:24px}
+.hiw-arrow {display:grid;place-items:center;flex:none;width:38px;height:38px;border:1px solid #dbe9c433;border-radius:50%;background:#dbe9c408}
+.hiw-arrow svg {width:18px;height:18px}
+.hiw-ready {display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:20px;padding:22px 26px;border-radius:18px}
+.hiw-ready h2 {font:500 16px/1.4 'DM Sans',sans-serif;color:#f0f4e8;margin:0 0 5px}
+.hiw-ready p {color:#b9cdbb;font-size:13px;line-height:1.6;margin:0}
+.hiw-ready>a {flex:none;color:#d1dfa1;font-size:13px;border-bottom:1px solid #d1dfa155;padding:8px 0}
+.hiw-assistance {margin-top:48px}
+.hiw-section-heading {display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:22px}
+.hiw-section-heading .hiw-eyebrow {margin-bottom:9px}
+.hiw-section-heading h2 {margin:0;color:#f0f4e8;font:600 clamp(26px,3vw,36px)/1.2 'Manrope',sans-serif;letter-spacing:-.04em}
+.hiw-section-heading>p {max-width:330px;margin:0;color:#b9cdbb;font-size:13px;line-height:1.7}
+.hiw-services {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.hiw-service {display:flex;flex-direction:column;padding:26px}
+.hiw-service-top {display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:14px}
+.hiw-service h3 {margin:0;color:#f0f4e8;font:500 18px/1.4 'DM Sans',sans-serif;letter-spacing:-.02em}
+.hiw-price {color:#d9dfa9;font:500 32px/1.1 'Manrope',sans-serif;letter-spacing:-.04em;white-space:nowrap}
+.hiw-price small {display:block;margin-top:6px;font:400 10px/1.4 'DM Sans',sans-serif;letter-spacing:0;text-align:right;color:#b9cdbb}
+.hiw-service p {margin:0 0 22px;color:#b9cdbb;font-size:13px;line-height:1.7;max-width:370px}
+.hiw-button {align-self:flex-start;display:inline-flex;align-items:center;justify-content:center;min-height:44px;margin-top:auto;padding:11px 20px;border:1px solid #e3e7c9;border-radius:99px;color:#1b3d30;background:#e3e7c9;font-size:12px;font-weight:500;transition:background .2s}
+.hiw-button:hover {background:#f0f3d9}
+.hiw-button-secondary {background:#e3e7c908;border-color:#e3e7c940;color:#e3e7c9}
+.hiw-button-secondary:hover {background:#e3e7c918}
+.hiw-note {margin:18px 0 0;color:#a6bdab;font-size:11px;line-height:1.8}
+.hiw-note a {color:#d1dfa1;text-decoration:underline;text-underline-offset:3px}
+.hiw-main a:focus-visible {outline:2px solid #d1dfa1;outline-offset:5px}
+.hiw-step:has(a:focus-visible) {outline:2px solid #d1dfa1;outline-offset:4px}
+@media(max-width:1000px) {.hiw-container {width:calc(100% - 48px)}.hiw-step {padding:22px}.hiw-step h2 {font-size:22px}.hiw-service-top {flex-direction:column;gap:14px}.hiw-price small {text-align:left}}
+@media(max-width:680px) {
+  .hiw-container {width:calc(100% - 40px)}
+  .page-howitworks .hiw-main {padding:28px 0 44px}
+  .hiw-intro {margin-bottom:28px}.hiw-intro p {font-size:14px;margin-top:16px}
+  .hiw-steps,.hiw-services {grid-template-columns:1fr;gap:14px}
+  .hiw-step-top {margin-bottom:16px}.hiw-step p {margin-bottom:18px}
+  .hiw-ready {align-items:flex-start;flex-direction:column;gap:12px;padding:22px;margin-top:14px}
+  .hiw-assistance {margin-top:36px}.hiw-section-heading {align-items:flex-start;flex-direction:column;gap:14px}
+  .hiw-service {padding:22px}.hiw-service-top {flex-direction:row;gap:16px}.hiw-service h3 {font-size:17px}.hiw-price small {text-align:right}
+}
+@supports not (backdrop-filter:blur(1px)) {.hiw-glass {background:#294b3e}}

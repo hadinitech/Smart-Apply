@@ -29,7 +29,7 @@
   const navigation = document.querySelector('header .nav-links');
   const toggle = document.querySelector('header .menu, header .burger');
   if (navigation && toggle) {
-    if (document.body.matches('.landing-page, .support-page')) {
+    if (document.querySelector('header.site-header')) {
       toggle.addEventListener('click', () => {
         const open = navigation.classList.toggle('open');
         toggle.setAttribute('aria-expanded', String(open));

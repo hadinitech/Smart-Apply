@@ -1,0 +1,21 @@
+/* Applicant checklists share the university card surface and action styling. */
+.nsfas-page .content-grid {grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+body .institution-card.nsfas-card {min-height:320px;padding:24px}
+body .nsfas-card .institution-title {font-size:25px;line-height:1.3;margin-bottom:14px}
+body .nsfas-card .nsfas-requirement {align-self:flex-start;color:#c5d8c5;font-size:11px;border:1px solid #bfd7bd26;border-radius:99px;padding:4px 10px;margin-bottom:14px;background:#cce4c40a}
+body .nsfas-card .nsfas-checklist {display:grid;gap:9px;margin:0 0 20px;padding:0;list-style:none;color:#c2d2c3;font-size:13px;line-height:1.6}
+body .nsfas-card .nsfas-checklist li {display:flex;align-items:flex-start;gap:9px}
+body .nsfas-card .nsfas-checklist li:before {content:'✓';color:#d1dfa1;flex:none}
+body .nsfas-card .nsfas-card-action {margin-top:auto;padding-top:16px;border-top:1px solid #c5ddc522}
+body .nsfas-card .institution-view {font-size:13px;gap:12px}
+.nsfas-page .nsfas-heading {margin-bottom:26px}
+.nsfas-page .nsfas-heading h2 {font-size:clamp(26px,3vw,36px);color:#193e34;margin-bottom:10px}
+.nsfas-page .nsfas-heading p {color:#6c7b6e;font-size:14px;max-width:680px}
+.nsfas-page .nsfas-next-step {display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:28px;padding:26px;border:1px solid #193e341a;border-radius:20px;background:#f7f2e7}
+.nsfas-page .nsfas-next-step h3 {font-size:20px;color:#193e34;margin-bottom:8px}
+.nsfas-page .nsfas-next-step p {color:#6c7b6e;font-size:13px;max-width:620px}
+.nsfas-page .nsfas-next-step .btn {background:#193e34;color:#f7f2e7;font-size:13px}
+.nsfas-page .nsfas-source {font-size:12px;color:#6c7b6e;margin-top:20px;line-height:1.7}
+.nsfas-page .nsfas-source a {color:#285c46;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:1100px) {.nsfas-page .content-grid {grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px) {.nsfas-page .content-grid {grid-template-columns:1fr}body .institution-card.nsfas-card {min-height:0;padding:22px}.nsfas-page .nsfas-next-step {padding:22px}}
